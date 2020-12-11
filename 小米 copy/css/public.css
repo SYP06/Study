@@ -1,0 +1,198 @@
+/* top开始 */
+body{
+    font: 14px "HanHei SC","PingFang SC","Avenir Next",Avenir,"Helvetica Neue",Helvetica,"Lantinghei SC","Hiragino Sans GB","Microsoft YaHei",微软雅黑,STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif;;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,li{
+    list-style: none;
+}
+
+.top {
+    font-size: 12px;
+    background: #333;
+    height: 40px;
+    line-height: 40px;
+}
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+.top span{
+    color: #ffffff;
+    margin: 2px;
+}
+.top a {
+    color: #ffffff;
+    text-decoration: none;
+} 
+.top a:hover{
+    color: #dddddd;
+}
+.topright {
+    float: right;
+    /* margin-right: 8px; */
+}
+.topleft {
+    float: left;
+    /* margin-left: -8px; */
+}
+/* top结束 */
+
+/* header开始 */
+.header {
+    height: 100px;  
+}
+.logo img {
+    width: 187px;
+    height: 55px;
+    margin: 23px 1px;
+}
+.nav{
+    float: right;
+}
+.nav-list{
+    color: #333;
+    font-size: 18px;
+}
+.nav > li {
+    float: left;
+    height: 40px;
+    padding: 35px 23px;
+}
+.nav-list:hover{
+    color: #e94400;
+}
+.nav-list {
+    text-decoration: none;
+}
+.nav-sub-list {
+    position: absolute;
+    top: 80px;
+    right: -40px;
+    background: #ffffff;
+    width: 150px;
+    height: 102px;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+}
+.nav-money {
+    position: relative;
+}
+.nav-sub-list a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    line-height: 40px;
+}
+.nav-sub-list {
+    height: 80px;
+    line-height: 40px;
+    text-align: center;
+    font: 16px;
+}
+
+.nav-money:hover .nav-sub-list{
+    display: block;
+}
+.nav-list :hover + .nav-sub-list {
+    display: block;
+}
+.nav-sub-list {
+    display: none;
+}
+/* .nav-sub-list{
+    display: none; */
+
+.nav-sub-list a:hover {
+    color: #e9440e;
+}
+/* .nav-sub-list li:hover {
+    background: #eeeeee;
+} */
+.nav-sub-list li a {
+    display: inline-block;
+    width: 150px;
+}
+.sub-link:hover{
+    background-color:#eeeeee ;
+}
+
+
+.nav-sub-list::before{
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: -6px;
+    left: 68px;
+    border: 1px solid #e5e5e5;
+    /* background: white; */
+    transform: rotate(45deg);
+    border-right: transparent;
+    border-bottom: transparent;
+}
+/* header结束 */
+
+
+/* footer开始 */
+footer{
+    height: 209px;
+}
+
+.footer-left img {
+    height: 46px;
+    width: 46px;
+    /* margin-top: 40px; */
+    float: left;
+    margin-right: 4px;
+}
+.footer-left-text {
+    float: left;
+}
+.footer-left-text li {
+    float: left;
+    border-right: 1px solid rgb(87, 87, 87);
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.footer-left-text li:last-child {
+    border-right: none;
+}
+.footer-left-text li a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #575757;
+}
+.about {
+    overflow: hidden;
+}
+.contact li{
+    color: #6d6d6d;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.footer-right {
+    float: right;
+}
+.right-title {
+    color: #575757;
+    font-size: 14px;
+}
+.right-tel {
+    color: #E84519;
+    font-size: 26px;
+}
+.right-time {
+    color: #575757;
+    font-size: 12px;
+}
+.footer {
+    margin-top: 100px;
+    padding-bottom: 100px;
+}
+
+/* footer结束 */

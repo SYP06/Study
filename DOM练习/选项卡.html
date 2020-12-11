@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    /* 将li前面的点去掉 */
+    li {
+        list-style: none;
+    }
+    #container {
+        width: 300px;
+        margin: 50px auto 0;
+    }
+    
+    /* 浮动之后高度为0，content占用了menue的位置，可以给父元素设置高度
+       把高度重新占上 */
+    #menue{
+        height: 40px;
+        border-bottom: 1px solid #000000;
+    }
+
+    #menue>li {
+        /* 浮动之后宽就变为内容宽度，重新设置宽 */
+        float: left;
+        /* 总共宽是300，一个100 */
+        width: 100px;
+        background-color: #cccccc;
+        height: 100%;
+        /* text-align 水平居中； line-height等于height垂直居中 */
+        text-align: center;
+        line-height: 40px;  
+    }
+
+    #menue>li.active{
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+    #content {
+        width: 100%;
+        height: 300px;
+    }
+
+    /* 内容的切换display：block/none */
+    #content>div {
+        background-color: #cccccc;
+        height: 300px;
+        display: none;
+    }
+
+    #content>div:first-child{
+        display: block;
+    }
+    
+    
+    
+   
+</style>
+<body>
+    <!-- 整个一个大块，里面分两块 -->
+    <div id="container">
+    <!-- 上面都是用列表横过来，用ul在写三个li -->
+       <ul id="menue">
+           <!-- 添加class，名为active -->
+           <li class="active">菜单1</li>
+           <li>菜单2</li>
+           <li>菜单3</li>
+       </ul>
+       <!-- 三个div代表下面三个区域 -->
+       <div id="content">
+           <div>内容11111</div>
+           <div>内容222222222</div>
+           <div>内容33333333333333</div>
+       </div>
+    </div>
+    <script>
+        //声明对象
+        oContainer = document.getElementById('container');
+        oMenue = document.getElementById('menue');
+        aLi = oMenue.getElementsByTagName('li');
+
+        oContent = document.getElementById('content');
+        aDiv = oContent.getElementsByTagName('div');
+
+        // 用for循环给每一个li绑定一个点击事件
+        for (var i=0 ; i< aLi.length ; i++){
+            /* 在执行for循环的时候将 index(索引)也定义(index需要自己定义)
+               就使显示0，1，2
+            */
+            aLi[i].index = i ;
+
+            aLi[i].onclick = function(){
+
+        //清空所有li的class
+        //在点击的时候使其他的li都没有点击显示
+                for(var j=0; j< aLi.length ; j++){
+                    aLi[j].className = '';
+                    aDiv[j].style.display = 'none';
+            }
+        // 给选中的设置样式
+        /* index为0 即第一个li 在第一个li上面加active 使第一个content显示*/
+                aLi[this.index].className = 'active';
+                aDiv[this.index].style.display = 'block';
+            }
+
+        }
+        
+
+    </script>
+</body>
+</html>

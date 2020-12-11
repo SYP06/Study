@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom遍历</title>
+</head>
+<body>
+<!-- Dom遍历 是给一个元素找其他元素  -->
+<!-- 元素节点是1，属性是2，文本是3 -->
+     <h1 id="h11">这是一个h1</h1>
+     <p>这是一个p </p>
+     <div id="div1">
+         <h1 id="h12">这是第二个h1</h1>
+         <p id="p2">这是第二个p2</p>
+     </div>
+
+<script>
+    var oH1 = document.getElementById('h11');
+    var oP2 = document.getElementById('p2');
+// nextSibling会算空格和换行；nextElementSibling有就兼容性问题
+    console.log(oH1.nextSibling);
+    console.log(oH1.nextElementSibling);
+
+// 封装next方法，在所有浏览器中都可以返回下一个兄弟元素节点
+// 当后面没有了就会出现null，null。nodetype会报错；
+//  加elem && ；如果是null就直接在while位置跳出就不会执行，方法不会报错，只是style会报错
+    function next(elem){
+        do{
+            elem = elem.nextSibling; //找到兄弟节点
+        } while(elem && elem.nodetype !=1 );   //是1就找到了，直接return就行，不是1就继续找
+        return  elem;
+
+    }
+    next(oP2).style.background = 'blue';
+
+ 
+
+    var oDiv1 = document.getElementById('div1')
+// //封装first方法，在所有的浏览器中都可以返回第一个元素孩子节点
+    function first(elem){
+        elem = elem.firstChild;
+        return elem && elem.nodetype !=1 ? next(elem) : elem;
+        //问好前面整体满足就是true，就返回；如果不是1就继续往下找，找下一个兄弟，返回elem
+    }
+    first(oDiv1).style.background = 'green';
+    
+</script>
+</body>
+</html>

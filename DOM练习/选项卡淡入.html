@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡淡入</title>
+</head>
+<!--  选项卡淡入是改在CSS，主要是改content，包括定位，透明度，设置背景颜色和字体颜色
+      JS的style部分也要相应的更改
+-->
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    #container {
+        width: 300px;
+        margin: 50px auto 0;
+    }
+    
+    #menue{
+        height: 40px;
+        border-bottom: 1px solid #000000;
+    }
+
+    #menue>li {
+        float: left;
+        width: 100px;
+        background-color: #cccccc;
+        height: 100%;
+        text-align: center;
+        line-height: 40px;  
+    }
+
+    #menue>li.active{
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+    #content {
+        width: 100%;
+        height: 300px;
+        position: relative;
+    }
+
+    #content>div {
+        background-color: #000000;
+        color: #ffffff;
+        height: 300px;
+        /* 定位之后宽度就没了，把宽度写死 */
+        width: 100%;
+        /* display: none; */
+        opacity: 0;
+        /* 如果没有定位的话三个div是分开的，没有在一起
+        通过定位使他们叠在一起   */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* 过渡 1s 属性使opacity */
+        transition: ease 1s opacity;
+        
+
+    }
+
+    #content>div:first-child{
+        /* display: block; */
+        opacity: 1;
+    }
+   
+</style>
+<body>
+    <div id="container">
+        <ul id="menue">
+            <li class="active">菜单1</li>
+            <li>菜单2</li>
+            <li>菜单3</li>
+        </ul>
+        <div id="content">
+            <div>内容11111</div>
+            <div>内容222222222</div>
+            <div>内容33333333333333</div>
+        </div>
+     </div>
+     <script>
+         oContainer = document.getElementById('container');
+         oMenue = document.getElementById('menue');
+         aLi = oMenue.getElementsByTagName('li');
+ 
+         oContent = document.getElementById('content');
+         aDiv = oContent.getElementsByTagName('div');
+ 
+
+         for (var i=0 ; i< aLi.length ; i++){
+             aLi[i].index = i ;
+ 
+             aLi[i].onclick = function(){
+ 
+         //清空所有li的class
+                 for(var j=0; j< aLi.length ; j++){
+                     aLi[j].className = '';
+                     aDiv[j].style.opacity  = 0;
+             }
+         // 给选中中的设置样式
+                 aLi[this.index].className = 'active';
+                 aDiv[this.index].style.opacity  = 1;
+             }
+             
+         }
+         
+ 
+     </script>
+</body>
+</html>

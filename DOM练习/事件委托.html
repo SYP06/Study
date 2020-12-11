@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">添加</button>
+    <ul id="ul1">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        var oUl1 = document.getElementById('ul1');
+        var aLi = oUl1.getElementsByTagName('li');
+// e.target 显示是那个元素触发事件(li触发了)
+        oUl1.onclick = function(e){
+            e|| window.event; //有考虑兼容性
+            var target = e.target || e.srcElement; //考虑兼容性
+            console.log(target.innerHTML);
+        }
+        console.log(aLi);
+        for (i=0; i< aLi.length; i++){
+            aLi[i].onclick = function(){
+                //aLi[i].innerHTML不好使，因为console.log是在for循环之后触发事件的时候才执行，这时候循环已经执行完了，i=3(超出了数组的长度)
+                console.log(this.innerHTML); //innerHTML就只打印标签里面的，不会显示<li></li>
+            }
+        }
+
+//先找到对应的元素btn1,创建事件onclick，创建新的li，在新的li中加入随机数，在ul后面插入appendchild()
+//在ul后面插入appendchild()，是因为要给li（111，222，333)后面加元素，li是ul的孩子，所以是oUl1.appendchild
+        var oBtn1 = document.getElementById('btn1');
+        oBtn1.onclick = function(){
+            var oLi = document.createElement('li');
+            oLi.innerHTML = Math.random();
+            oUl1.appendChild(oLi);
+        }
+    </script>
+</body>
+</html>

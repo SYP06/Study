@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+<body>
+    <!-- 
+        1.事件源：该事件是哪个元素触发的
+        2.事件处理函数：如何处理这个事件的函数
+        3.事件对象：他是对象，在这个对象中包含所有与该事件有关的信息
+     -->
+     <button id="btn1">点我</button>
+     <script>
+         //oBtn1是事件源，function是处理函数，e是事件对象(e/event)
+         var oBtn1 = document.getElementById('btn1');
+         oBtn1.onclick = function(e){
+             console.log(111);
+             console.log(e);
+         }
+
+// 绑定事件的方式  1.on+事件名  2.事件监听
+
+    // addEventListener('事件名'，处理函数，默认false)
+        oBtn1.addEventListener('click', function(e){
+             console.log(222);
+             },false);
+
+        oBtn1.addEventListener('click', fn,false);
+        
+        //直接这样写不对，不是一个对象；虽然写的函数是一样的但是占的内存空间是不一样的，这种情况要重新写一个fn共用（指向一个元素）
+        // oBtn1.removeEventListener('click', function(e){
+        // console.log(333);
+        // },false);
+
+        oBtn1.removeEventListener('click', fn,false);
+
+        var fn = function(e){
+             console.log(333);
+        }
+
+             
+     </script>
+    
+</body>
+</html>

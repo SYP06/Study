@@ -1,0 +1,21 @@
+<script>
+    
+
+    function fn2(x){
+        // var fn3 = x();
+        console.log(    x()()()    );
+    }
+    var fn = function(){
+        return function(){
+            return function(){
+                return 8;
+            };
+        };
+    };
+
+    fn2(fn);
+
+    // x = fn = fn...
+
+
+</script>

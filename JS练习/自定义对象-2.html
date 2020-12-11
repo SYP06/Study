@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义对象-2</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            name: 'lisi',
+            age: 24,
+            brother: {
+                name: 'lixx',
+                age: 25,
+                sister: {
+                    name: 'zhangxx',
+                    say:function(){
+                        console.log('hello');
+                        
+                    },
+                    sleep:function(){}
+                }
+            }
+        }
+        console.log(person.brother.sister.name);
+        person.brother.sister.say();
+        //函数调用用（）
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三列布局，两侧固定，中间自适应</title>
+    <style>
+        #left {
+            width: 200px;
+            height: 500px;
+            background-color: crimson;
+            float: left;
+        }
+        #center {
+            height: 500px;
+            background-color: cyan;
+            margin-left: 210px;
+            margin-right: 210px;
+        }
+        #right {
+            width: 200px;
+            height: 500px;
+            background-color: darkgreen;
+            float: right;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="left"></div>
+    <!-- left-center-right 不会有效果，因为center是块级元素独占一行，即使有位置也不会给right让
+         left-right-center right和center的位置互换后，先执行左浮和右浮，空间释放后center上去再调margin -->
+    <div id="right"></div>
+    <div id="center"></div>
+    
+</body>
+</html>

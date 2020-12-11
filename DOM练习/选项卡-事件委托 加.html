@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡-事件委托</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 将li前面的点去掉 */
+li {
+    list-style: none;
+}
+#container {
+    width: 300px;
+    margin: 50px auto 0;
+}
+
+/* 浮动之后高度为0，content占用了menue的位置，可以给父元素设置高度
+   把高度重新占上 */
+#menue{
+    height: 40px;
+    border-bottom: 1px solid #000000;
+}
+
+#menue>li {
+    /* 浮动之后宽就变为内容宽度，重新设置宽 */
+    float: left;
+    /* 总共宽是300，一个100 */
+    width: 100px;
+    background-color: #cccccc;
+    height: 100%;
+    /* text-align 水平居中； line-height等于height垂直居中 */
+    text-align: center;
+    line-height: 40px;  
+}
+
+#menue>li.active{
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#content {
+    width: 100%;
+    height: 300px;
+}
+
+/* 内容的切换display：block/none */
+#content>div {
+    background-color: #cccccc;
+    height: 300px;
+    display: none;
+}
+
+#content>div:first-child{
+    display: block;
+}
+
+</style>
+<body>
+ <div id="container">
+       <ul id="menue">
+           <!-- index建立了一个自定义dom属性 -->
+           <li index = '0' class="active">菜单1</li>
+           <li index = '1'>菜单2</li>
+           <li index = '2'>菜单3</li>
+       </ul>
+       
+       <div id="content">
+           <div>内容11111</div>
+           <div>内容222222222</div>
+           <div>内容33333333333333</div>
+       </div>
+    </div>
+    <script>
+        oContainer = document.getElementById('container');
+        oMenue = document.getElementById('menue');
+        aLi = oMenue.getElementsByTagName('li');
+
+        oContent = document.getElementById('content');
+        aDiv = oContent.getElementsByTagName('div');
+
+        //能够通过target获取li
+        oMenue.onclick = function(e){
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            // console.log(target.tagName);
+            //tagName要求"大写"
+            
+            //判断触发当前click的元素是li而不是别的
+            if (target.tagName == 'LI'){
+
+                for(var j=0; j< aLi.length ; j++){
+                    aLi[j].className = '';
+                    aDiv[j].style.display = 'none';
+                }
+         
+        //获取自定义dom属性
+                var index = target.getAttribute('index');
+                aLi[index].className = 'active';
+                aDiv[index].style.display = 'block';     
+            }
+        }
+            for (var i=0 ; i< aLi.length ; i++){
+           
+               aLi[i].index = i ;
+            }
+
+        
+        
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运算符</title>
+</head>
+<body>
+    <script>
+        // 数学运算
+
+        //如果a,b不都是数字类型，a是数字，b是字符串，得出的结果就是拼在一起的字符串
+        //任何数据类型和字符串加在一起，"+"就是连接符了
+        //如果字符串里面是数字除了"+",其余都正常算
+        //如果是数字-,%,/字符串，打印结果为NaN(not a number)
+        var a=7 ;
+        var b="abc" ;
+        // console.log( a / b)   
+
+        // a++ 自增（后自增），先打印后a+1
+        // ++a 自增（前自增）先+1后打印
+        // console 后面又跟了一个console 接着前面console的结果继续
+
+        // console.log( a++)
+        // console.log( ++a)
+        
+
+        // var c = a++ + 5
+
+        // console.log (c , a) 
+        // a先打印为6，6+5=11，a打印完+1，所以c=11，a=7
+
+
+        //比较运算
+        //结果为true或false
+        // console.log(  1==1 )
+
+        //在比较运算中，数字0，空字符串"",null,undefined相当于false
+        //if里面只要是数值就是true，true的话就可以输出；
+        //如果if里面是false，如a=0，则结果是空
+
+        // if( a == 0);
+        // console.log ("yes...")  结果为false，即空的
+
+        // var c = "abc"
+        // if( a == 7 && 0 ); //并且：两边都是true，才打印(除去是false的情况)
+        // console.log ("yes...");
+        
+
+        var c = a || 5 ; //返回结果是这两个中的一个，判断a是不是有效，如果a有效，将a的值赋予c，否则将5赋给c
+        console.log( c );
+
+
+
+    </script>
+    
+</body>
+</html>

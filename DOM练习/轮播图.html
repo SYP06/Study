@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+             width: 750px;
+             height: 291px;
+             margin: 50px auto 0;
+             position: relative;
+        }
+        #img-box>img{
+            display: none;
+        }
+        #img-box>img:first-child{
+            display: block;
+        }
+        #tab{
+            display: flex;
+            width: 120px;
+            /* 在弹性盒对象的 <div> 元素中的各项周围留有空白,两端对齐*/
+            justify-content: space-between;
+            position: absolute;
+            right: 50px;
+            bottom: 30px;
+        }
+        #tab>li{
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background: rgba(0,0, 0, 0.6);
+            color:white;
+        }
+        #tab>li.active{
+
+            background: rgba(255,0, 0, 0.8);
+        }
+        .btn{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            font-size: 50px;
+            background:  rgba(0,0, 0, 0.6);
+            text-align: center;
+            line-height: 50px;
+            color: #ffffff;
+            position: absolute;
+            
+            /* 垂直居中，前两个要算，第三个不用算 */
+            /* top: calc(50% - 25px); translate 纵向移动Y轴 */
+
+            /* top: 50%;
+            margin-top: -25px; */
+            top: 50%;
+            transform:translateY(-50%);
+        }
+        #next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="img-box">
+            <img src="imgs/1.jpg" alt="">
+            <img src="imgs/2.jpg" alt="">
+            <img src="imgs/3.jpg" alt="">
+            <img src="imgs/4.jpg" alt="">
+            <img src="imgs/5.jpg" alt="">
+        </div>
+        <ul id="tab">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <span id="prev" class="btn">&lt;</span>
+        <span id= "next"class="btn">&gt;</span>
+
+    </div>
+    <script>
+        var oContainer = document.getElementById('container');
+        var aImg = document.querySelectorAll('#img-box>img');
+        var aLi = document.querySelectorAll('#tab>li');
+
+        var oPrev = document.getElementById('prev');
+        var oNext = document.getElementById('next'); 
+        var currentIndex = 0;
+
+        /*1.类似选项卡，根据tab切换图片*/
+        for (i=0; i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onclick = function(){
+                 //样式初始化/重置样式
+            for (j=0; j<aLi.length; j++){
+                aLi[j].className = '';
+                aImg[j].style.display = 'none';  
+            }
+            //记录下来了当前的是哪一个
+            currentIndex =this.index;
+            aLi[this.index].className = 'active';
+            aImg[this.index].style.display = 'block';
+            }
+        }   
+
+        /*2.翻页*/
+        oNext.onclick = function(){
+            currentIndex++;
+            //判断一下，一共是5张图=索引长度就是4，大于4之后在从头开始
+            if(currentIndex > 4){
+                currentIndex = 0;
+            }
+            for (j=0; j<aLi.length; j++){
+                aLi[j].className = '';
+                aImg[j].style.display = 'none';  
+            }
+            aLi[currentIndex].className = 'active';
+            aImg[currentIndex].style.display = 'block';
+
+        }
+
+        oPrev.onclick = function(){
+            currentIndex--;
+            if(currentIndex < 0){
+                currentIndex = 4;
+            }
+            for (j=0; j<aLi.length; j++){
+                aLi[j].className = '';
+                aImg[j].style.display = 'none';  
+            }
+            aLi[currentIndex].className = 'active';
+            aImg[currentIndex].style.display = 'block';
+        }
+
+        /*3.自动翻页*/
+        // setInterval(function(){
+        //     oNext.onclick();
+        // },1000);
+
+        // 如果在function里面写var，就是局部的获取不到，在里面写，在外面var
+        var timer;
+        oContainer.onmouseout = function(){
+            timer = setInterval(function(){
+               oNext.onclick();
+            },1000);
+        }
+        oContainer.onmouseover = function(){
+
+            clearInterval( timer)
+
+        }
+
+    </script>
+    
+</body>
+</html>

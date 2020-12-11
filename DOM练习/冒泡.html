@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
+    <title>冒泡</title>
+</head>
+<style>
+    #a {
+        width: 200px;
+        height: 300px;
+        background-color: red;
+    }
+    #b {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+    }
+    #c {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+</style>
+<body>
+    <div id='a'>
+        a
+        <div id="b">
+            b
+            <div id="c">c</div>
+        </div>
+
+    </div>
+    <script>
+    //事件冒泡：像冒泡一样从里往外触发 cba
+    //事件捕获：事件从外往里触发  abc
+    //将false改为true，就由事件冒泡转换成事件捕获
+        var oA = document.getElementById('a');
+        var oB = document.getElementById('b');
+        var oC = document.getElementById('c');
+
+        oA.addEventListener('click',function(){
+            console.log('a');
+        },false);
+        oB.addEventListener('click',function(){
+            console.log('b');
+        },false);
+        oC.addEventListener('click',function(e){
+            console.log('c');
+    //阻止事件冒泡的方法
+            e.stopPropagation();
+        },false);
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>块和行元素</title>
+    <style>
+        div, h1, p{
+            width: 200px;
+            height: 30px;
+            background-color: #ff0000;
+            /* display none 块元素隐藏，block为原样，inline变为行元素 */
+            display: inline;
+
+        }
+        span, a {
+            /* 行元素无法设置跨高，block变为块元素后可以 */
+            width: 200px;
+            height: 30px;
+            background-color: green;
+            /* disply block由行元素变为块元素 */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 块元素”默认宽度为父元素内容的宽度，可以设置宽和高，垂直分布 -->
+    <div>div</div>
+    <h1>h1</h1> 
+    <p>p</p>
+    
+    <!-- 行元素是内容撑开的，不可以设置宽和高，水平分布 -->
+    <span>span </span>
+    <a href="#">链接</a>
+
+</body>
+</html>

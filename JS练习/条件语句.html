@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件语句</title>
+</head>
+<body>
+    <script>
+        //if 语句
+        //else if 可根据情况加
+        // var a = 6;
+        // if( a == 5 ){
+        //     console.log("a=5");
+        // }else if (a == 6 ){
+        //     console.log("a=6");
+        // }else {
+        //     console.log("a nothing")
+        // }
+
+        //switch
+        //如果a=5，就执行console.log("a=5")，然后break结束，以此类推；
+        // 没有break会一起打印 练习6
+        // var a = 6
+        // switch( a ){
+        //     case 5 :
+        //         console.log("a=5");
+        //         // break;
+        //     case 6 : 
+        //         console.log("a=6");
+        //         break;
+        //     default:
+        //     console.log("a nothing");
+        // }
+
+        //弹窗
+        // prompt("请输入答案")； 永远返回字符串
+        
+        //switch不会发生隐式数据类型转换
+        // var input = prompt("请输入答案");
+        // switch( input){
+        //     //输入大小写都可，加case；case后面必须是固定的值
+        //     case "A":
+        //     case "a":
+        //       console.log("11111");
+        //       break;
+        //     case "b":
+        //       console.log("222222");
+        // }
+        
+        // var input = prompt("请输入答案");
+        // //parseint 将括号里的字符串转化成数值
+        // switch( parseInt(input) ){     
+        //     case "A":
+        //     case "a":
+        //       console.log("11111");
+        //       break;
+        //     case 1:
+        //       console.log("222222");
+        // }
+
+        //三元运算符
+        var a = 5
+        // ?前面是比较运算，如果前面比较运算等于真，就将后面的yes赋予d；如果返回假，就将no赋予c
+        var d = a == 5 ? "yes" : 'no'
+        console.log(d);
+
+    </script>
+    
+    
+</body>
+</html>

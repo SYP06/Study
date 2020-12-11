@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数补充</title>
+</head>
+<body>
+    <script>
+/*数据类型：
+   1.基本数据类型：number，boolean, null, string,undefined,symbol(es6)
+   2.引用类型：object
+*/
+           
+//函数声明
+    function fn1 (){}
+    fn1();
+//函数表达式
+//函数在JS中就是一种值，一种数据类型，它属于引用类型
+    var  fn2 = function(){
+        console.log("hhhh");
+    }
+    fn2()
+
+    var fn3 =new Function('console.log("xxxxx")');
+    fn3();
+
+//
+    function fn4(x){
+        console.log(x);
+    }
+    fn4(5);
+
+// 当函数调用里面还是一个函数的时候，x的类型就是function,那x就可以调用，如下面fn6
+    function fn5(x){
+         console.log(typeof x);
+    }
+    fn5(function(){});
+
+// 在function中写，调用x就是hahahahha
+    function fn6(x){
+         x();
+    }
+    fn6(function(){
+        console.log('hahahahha');
+    });
+    
+    
+    function fn7(x){
+        return x
+    }
+    var y = fn7(function(){
+        console.log('youh');
+    });
+    y();
+
+
+  
+//函数式编程
+/*范式编程：
+   1.面向对象编程
+   2.面向过程编程
+   3.泛型编程
+   4.函数式编程：将函数看成一个值
+   5.可微分编程
+   
+   */
+
+   function test(a){
+           a(function(){
+               console.log('yaya');
+           });
+    }
+    test(function(b){
+        b();
+    })
+
+    
+    </script>
+</body>
+</html>

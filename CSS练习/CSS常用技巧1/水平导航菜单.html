@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水平导航菜单</title>
+    <style>
+        #menue {
+            list-style: none;
+            /* 如果没有特殊需求，不能固定写死 */
+            /* height: 30px; */
+            /* 父元素也浮动的话空间释放，后面的666666还是会横过来在边上 */
+            /* float: left; */
+            /* 上面浮动，下面不上去可以用overflow：hidden */
+            /* overflow: hidden; */
+        }
+        #menue li {
+            width: 120px;
+            height: 30px;
+            background-color: yellow;
+            float: left;
+            margin-right: 2px;
+            /* 没有下划线，下划线是在a下面的所以给li设置没效果 */
+            /* text-decoration: none */
+        }
+        #menue li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #ffffff;
+            /* 文本缩进，也可以用内边距、外边距 */
+            text-indent: 20px;
+            /* 将行元素a转化成块元素 */
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 30px;
+        }
+        /* 伪类选择器，鼠标滑入有背景颜色 */
+        #menue li a:hover {
+            background-color: teal;
+        }
+        /* 上面元素浮动，不想上去，可以在不想上去的元素上面加清除浮动 */
+        h1 {
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 当li浮动时，空间释放，没有内容撑着了，ul高度为0 -->
+    <ul id="menue">
+        <li>
+            <a href="">Link 1</a>
+        </li>
+        <li>
+            <a href="">Link 2</a>
+        </li>
+        <li>
+            <a href="">Link 3</a>
+        </li>
+    </ul>
+    <h1>666666666</h1>
+</body>
+</html>

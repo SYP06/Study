@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用事件</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oSex = document.getElementById('sex');
+            oSex.onchange =  function(){
+            console.log(666);
+      }
+        }
+    </script>
+</head>
+<body>
+    <!-- 加p标签换行 -->
+    <p>
+        <input type="text" id='username' value="请输入名字">
+    </p>
+   
+    <p>
+        <select name="" id="sex">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+    </p>
+   
+    <p>
+        <input type="text" id='search' value="">
+
+    </p>
+
+    <div id="div1">1234567</div>
+
+    <form id="myform" action="http://www.baidu.com">
+
+        <p>
+            用户名：<input type="text">
+        </p>
+        <p>
+            密码：<input type="text">
+        </p>
+        <button type="submit">提交</button>
+    </form>
+    
+    <script>
+// onfucus onblur 聚焦 失焦
+      var oInput = document.getElementById('username');
+      oInput.onfocus = function(){
+          console.log(this.value);
+          if (this.value=='请输入名字'){
+              this.value = '';
+          }
+      }
+      oInput.blur = function(){
+        if (this.value==''){
+              this.value = '请输入名字';
+      }
+      }
+
+// onchange事件（值变化的时候才触发）
+      var oSex = document.getElementById('sex');
+      oSex.onchange =  function(){
+          console.log(666);
+      }
+
+// keydown，keyup onkeydown结果会滞后一次，keyup是同步的
+       
+       var oSearch = document.getElementById('search');
+    //    oSearch.onkeydown = function(){
+    //        console.log(this.value);
+    //    }
+       oSearch.onkeyup = function(){
+           console.log(this.value);
+       }
+
+// onmouse
+    var oDiv1 = document.getElementById('div1');
+
+    //鼠标滑入
+    oDiv1.onmouseover = function(){
+        console.log('我进去了');
+    }
+    //鼠标滑出
+    oDiv1.onmouseout = function(){
+        console.log('我出去了');
+    }
+    //鼠标移动
+    oDiv1.onmousemove = function(){
+        console.log('我在移动');
+    }
+    //鼠标按下  鼠标弹起mouseup
+    //和click的区别在于click按enter和空格键也好使，mousedown不行
+    oDiv1.onmousedown = function(){
+        console.log('我按下了');
+    }
+   
+
+// onsubmit表单提交时触发
+    var oForm = document.getElementById('myform');
+    oForm.onsubmit = function(){
+        return false;
+    }
+
+// onload 在最上面style下面
+    </script>
+
+
+    
+</body>
+</html>

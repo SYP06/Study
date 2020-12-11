@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两列布局，左侧固定，右侧自适应</title>
+    <style>
+        /* b不设置宽度，宽度自适应；a float之后空间释放，b就串上去，用margin-left把a的宽度让出来 */
+        #a {
+            width: 200px;
+            height: 500px;
+            background-color: cornflowerblue;
+            float: left;
+        }
+        #b {
+            height: 500px;
+            background-color: crimson;
+            /* b也float的话 宽度很小 */
+            /* float: left; */
+            margin-left: 210px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="a">aaaaaa</div>
+    <div id="b">bbbbbb</div>
+    
+</body>
+</html>

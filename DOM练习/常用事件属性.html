@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用事件属性</title>
+    <style>
+         #div1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+    </style>
+       
+    
+</head>
+<body>
+    <a  id='a' href="http://www.baidu.com">我要跳转了</a>
+    <div id="div1">1234567</div>
+    <script>
+        oDiv1 = document.getElementById('div1');
+        // clientX, clientY；获取鼠标点击位置（距离窗口）
+        // target ：事件源
+
+        oDiv1.onclick = function(e){
+            console.log(e.clientX,e.clientY);
+            console.log(e.target);//显示是哪个元素触发事件
+        }
+        // keycode
+        document.onkeydown = function(e){
+            console.log(e.keyCode);
+        }
+
+        //阻止默认行为
+        var oA = document.getElementById('a');
+        oA.onclick = function(e){
+            e.preventDefault();
+
+        }
+    </script>
+    
+</body>
+</html>

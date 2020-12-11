@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器优先级和权重</title>
+    <!-- 外部样式 -->
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <style>
+        /* 内部样式 */
+        #h11{
+            color:#ff0000;
+        }
+        .aa { 
+            color: #0000ff;
+        }
+         h1 { 
+            color: #00ff00;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <!-- 内联样式 -->
+    <!-- <h1 style="color: #ff0000;">这是第一个标签</h1> -->
+    <h1 id="h11" class="aa" style="color:yellow">这是一个标签</h1>
+
+    <!-- 
+        内联样式> 内部样式和外部样式， 内部样式和外部样式取决于先后顺序，后者胜
+        不推荐使用内联
+
+        权重值记住就行 id:100
+               class:10 （无论class怎么加都不会超过ID)
+               tag(标签选择器)：1
+               内联：1000
+               加！important可强制打破优先级（能不用就不用）
+     -->
+</body>
+</html>

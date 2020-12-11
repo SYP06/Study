@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>块级元素居中</title>
+</head>
+<style>
+    #outer {
+        width: 800px;
+        height: 200px;
+        background-color: blue;
+        margin: 0 auto;
+        position: relative;
+        margin-bottom: 20px;
+    }
+    #a{
+        width: 500px;
+        height: 80px;
+        background-color: #ff0000;
+        /* 水平居中，当有父元素时相对于父元素水平居中；用到定位时margin:0 auto 不起作用*/
+        margin: 0 auto;
+        /* 垂直定位 利用position，如果父元素没有相对定位，则子元素相对body定位 ; 元素定位加margin就没有意义也不动，可在父元素加*/
+        position: absolute;
+        /* top50%是子元素到父元素水平中线位置，margin-top在往回移宽度的一半，即垂直居中 */
+        top: 50%;
+        margin-top: -40px;
+        /* left50%是子元素到父元素垂直中线位置，margin-left在往回移宽度的一半，即水平居中 */
+        left: 50%;
+        margin-left: -250px;
+
+        /* 注意：让元素居中而不是里面的文字 
+           问题：要知道宽度和高度的值
+           如果不知道宽度和高度，要运用js算
+        */
+    }
+    #outer2 {
+        width: 800px;
+        height: 200px;
+        background-color: cadetblue;
+        /* 相当于在父元素内将span进行居中，把行元素当文本处理 */
+        /* 水平居中，仅针对行级元素，浮动或定位，该语法无效 */
+        text-align: center;
+        /* 垂直居中 ，仅针对行级元素，浮动或定位，该语法无效*/
+        line-height: 200px;
+    }
+
+    /* 在b上居中意思是让span里的文字在span里居中，span本身是行元素文字内容撑起，所以设置span没有意义，这种情况要在父元素操作 */
+        /* text-align: center; */
+        
+    /* #b {
+        text-align: center;
+    } */
+        
+
+   
+</style>
+<body>
+    <div id="outer">
+        <div id="a"></div>
+    </div>
+    <div id="outer2">
+        <span id="b">span...</span>
+    </div>
+</body>
+</html>

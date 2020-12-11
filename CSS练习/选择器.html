@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器</title>
+    <style>
+        h1{
+            color: #ff0000;
+        } */
+         p{
+            color: #00ff00;
+        }
+        /* id 选择器 */
+        #h11 {  
+            color: #ff0000;
+        } 
+        /* 类选择器 */
+       .aa{
+            color: #ff0000;
+        }
+        .bb{
+            font-style: italic;
+            color: #0000ff;
+        }
+        #div1>  h1{
+            color: salmon;
+        }
+        /*分组选择器 */
+        h1, p{
+            color: springgreen;
+        }
+        #div1 .cc h1 {
+            color: teal;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="h11" class="aa">这是一个标题</h1>
+    <p id="p1" class="aa">这是一个段落</p>
+    <h1 class="aa bb">这是第二个标题</h1>
+    
+    <div id="div1">
+        <h1>这是第三个标题</h1>
+        <div class="cc">
+            <h1>这是第四个标题</h1>
+        </div>
+    </div>
+</body>
+</html>

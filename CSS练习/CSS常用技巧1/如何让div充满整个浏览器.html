@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何让div充满整个浏览器</title>
+    <style>
+        html, body {
+            /* 先清掉默认8px外边距 */
+            margin: 0;
+            /* 相对于html来说调整，没反应说明html也是内容撑起，加html即可(html是相对于document) */
+            width: 100%;
+            height: 100%;
+        }
+      #a {
+          background-color: cornflowerblue;
+          /* 刚开始调宽高占body的100%，没效果，因为body的高度是由内容撑起的 */
+          width: 100%;
+          height: 100%;
+      }
+    
+      /*第二种方法：用相对定位，然后上下左右都设置为0
+       body {
+          margin: 0;
+        }
+      #a {
+        background-color: rgb(241, 11, 153);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      } 
+      */
+    </style>
+</head>
+<body>
+    <div id="a">aaaaaaaaaa</div>
+</body>
+</html>

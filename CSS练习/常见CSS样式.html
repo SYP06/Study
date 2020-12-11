@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见样式CSS</title>
+</head>
+<style>
+    #div1{
+        width: 400px;
+        height: 400px;
+        /* 两种写法，可展开，可合并，合并情况不分先后顺序，写几个都行 */
+        /* background-color: #ff0000;
+        background-image: url(./haha.jpg);
+        background-repeat: no-repeat;
+        background-position: center center; */
+        background: #00ff00 url(./haha.jpg) no-repeat 50% 50% ;
+        /* bgs: contain背景图片等比缩放包含在背景颜色中，cover是等比缩放直至把背景颜色全部覆盖，图片会只显示一部分 */
+        /* background-size: contain;
+        background-size: cover; */
+    }
+    h1{
+        width: 400px;
+        height: 200px;
+        background: #00ff00;
+        color: #ff0000;
+        /* text-align: center; */
+        /* line-height: 200px; */
+        /* line-height 只用于单行文本的垂直居中，多行可以将文本放在span中，使整体居中 */
+        text-indent: 60px;
+        /* text-ident 首行缩进 */
+        font-size: 20px;
+        font-style: italic;
+        font-weight: lighter;
+    }
+
+        /* 用于去掉文本带的格式：下划线 */
+
+    .dd {
+        text-decoration: none;
+        ;
+    }
+    /* 列表样式 none无点 */
+    ul{
+        list-style: none;
+    }
+    
+
+</style>
+<body>
+    <div id="div1">
+    这是div
+    </div>
+    <div>
+        <h1> 这是一个标题 这是一个标题</h1>
+    </div>
+    <a class="dd" href="#">这是链接</a>
+    <!-- ol order list
+        ul unorder list
+    -->
+    <ul>
+       <li>111</li>
+       <li>222</li>
+       <li>333</li> 
+    </ul>
+</body>
+</html>

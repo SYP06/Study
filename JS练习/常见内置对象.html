@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见内置对象</title>
+</head>
+<body>
+    <script>
+//数组：数据组合
+//1.new array
+    var arr1 = new Array('a','b','c');
+    console.log(arr1);
+    console.log(arr1[0]);  
+    console.log(arr1.length);
+    console.log(arr1[3]);
+
+    for (var i = 0; i < arr1.length; i++){
+        console.log(arr1[i]);
+    }
+
+    var arr2 = new Array (3,4,6);
+    console.log(arr2);
+
+// 当括号内只有一个数字如下，表示有三个空元素，没有值有长度   
+    var arr3 = new Array (3);
+    console.log(arr3);
+
+//当括号内不是单独数值如下,就显示'a'了
+    var arr4 = new Array ('a');
+    console.log(arr4);
+
+
+// 2.数组直接量
+// 如果只有一个元素的话。就只打印这一个元素（与new arry不同）  
+     var arr5 = [1,2,3,4];
+     console.log(arr5);
+
+//插入数组
+
+// 方法1——往后插入就将位置写在arr6[]中，如果写的位置是前面的位置，就会替换掉这个数
+    var arr6 = [1,2,3,6];
+    arr6[4] = 9;
+    console.log(arr6);
+
+// 方法2——arry.push放在数组末端; 如果在后面加pop(),删掉末端数
+    var arr7 = [1,2,3,6];
+    arr7.push(9);
+    arr7.pop();
+    console.log(arr7); 
+
+// 向前插入——unshift在数组前端插入，shift删掉前端数
+    var arr8 = [1,2,3,6];
+    arr8.unshift(9);
+    arr8.shift();
+    console.log(arr8);  
+
+// splice在任意位置添加删除; splice(从哪个位置删,删几个,加啥)
+    var arr = new Array(6)
+    arr[0]='lucy';
+    arr[1]='icey';
+    arr[2]='mia';
+    arr[3]='willa';
+    arr[4]='sarah';
+    arr[5]='clare';
+    arr.splice(2,1,'Haha');
+    console.log(arr);
+    
+//排序,按照字母顺序排序，前面相同就比较不同的字母顺序
+//排序只按字母顺序排序，不按数字排
+   var arr9 = ['clare','Alina','Alinda','eva'];
+   arr9.sort();
+   console.log(arr9);
+
+   var arr10 =[2,5,8,11];
+   arr10.sort();
+   console.log(arr10);
+   //结果 11，2，5，8
+
+
+//如果想按数字顺序排列，加function
+// a-b升序；b-a降序
+   var arr11 =[2,5,8,11];
+   arr11.sort(function(a,b){
+       return a-b;
+   });
+   console.log(arr11);
+
+//乱序 因为每一都差1，随机减0.5 
+   var arr12 =[2,3,4,5,6,7,8];
+   arr12.sort(function(){
+       return Math.random()-0.5;
+   });
+   console.log(arr12);
+
+// 倒序 reverse
+   var arr = new Array(6)
+    arr[0]='lucy';
+    arr[1]='icey';
+    arr[2]='mia';
+    arr[3]='willa';
+    arr[4]='sarah';
+    arr[5]='clare';
+    arr.reverse();
+    console.log(arr);
+
+// 连接concat
+//方法一
+   var arr16 = [1,2,3];
+   console.log(arr16.concat(6,7));
+
+//方法二
+   var arr17 = new Array(3);
+   arr17[0]='lucy';
+   arr17[1]='lucy';
+   arr17[2]='lucy';
+
+   var arr18 = new Array(3);
+   arr18[0]='clare';
+   arr18[1]='clare';
+   arr18[2]='clare';
+
+   console.log(arr17.concat(arr18));
+
+//join:出来是 
+   var arr19 = new Array(3);
+   arr19[0]='clare';
+   arr19[1]='clare';
+   arr19[2]='clare';
+   console.log(arr19.join()); //'clare,clare,clare' 字符串用逗号进行分隔
+   console.log(arr19.join('-')); //'clare-clare-clare' 
+
+
+//Date set设置，get获取
+  var now = new Date();
+  console.log(now);
+  //月份是10 因为从0开始,当前月的话就加1
+  console.log(now.getFullYear() +'-'+ now.getMonth() );
+  console.log(now.getFullYear() +'-'+ (now.getMonth()+1) );
+  // getday中返回一周中的某一天，getDate返回月中某一天
+  console.log(now.getFullYear() +'-'+ (now.getMonth()+1)+'-'+ now.getDay() );
+  console.log(now.getFullYear() +'-'+ (now.getMonth()+1)+'-'+ now.getDate() );
+  //设置某一天
+  now.setDate(25);
+  console.log(now);
+
+  //只有对象才有方法，数据类型下面没有方法
+  var num = new Number(13.56);
+  console.log(num.toFixed(1));
+
+//在浏览器中，全局对象指的是window
+   var aa =15.67;
+   console.log( parseInt(aa));
+
+//能够取出字符串中的数值，但如果字符串最前面就直接是字母会显示NaN
+   var bb = '50px'
+   console.log( parseInt(bb));
+
+   var CC = 'WERTYU50px'
+   console.log( parseInt(CC));
+   console.log( isNaN(CC));//测试CC是不是非数字，结果true/false
+
+
+// charAt :返回指定位置的字符
+   var string = 'hello world';
+   console.log(string.charAt(1));
+   console.log('the first character ；' + string.charAt(0));
+
+// indexof
+var string = 'Hello World'
+   console.log(string.indexOf('Hello'));
+   console.log(string.indexOf('World'));
+
+
+
+// lastindexof:返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索
+// stringObject.lastIndexOf(searchvalue,fromindex)
+// 如果要检索的字符串值没有出现，则该方法返回 -1
+   var string = 'Hello  World'
+   console.log(string.lastIndexOf('Hello'));
+   console.log(string.lastIndexOf('World'));
+
+// match : 在字符串内检索指定的值，或找到一个或多个正则表达式的匹配
+// 如果没有找到任何匹配的文本， match() 将返回 null  
+   var string = 'Hello World?'
+   console.log(string.match('world'));
+   console.log(string.match('World?'));
+
+
+// replace 
+    //全局替换
+    var string = "hello girl!";
+    string = string + 'nice to meet you !'
+    string = string + 'goodby'
+    console.log(string.replace(/girl/g,'boy'));
+
+    //替换字符串
+    var string = "hello girl!";  
+    console.log(string.replace(/girl/,'boy'));
+
+
+    var text = "hello girl!"; 
+    console.log(text.replace(/girl/i,'GiRL'));
+
+//slice 取出指定
+    var string = "hello boy and girl!";  
+    console.log(string.slice(6,10));
+
+    var string = "hello boy and girl!";  
+    console.log(string.search('and'));
+
+//split : 一个字符串分割成字符串数组
+    var string = "hello boy and girl!"; 
+    console.log(string.split(' '));
+    console.log(string.split('',3));
+
+// substring：提取字符串中两个指定的索引号之间的字符。
+     var string = "hello boy and girl!"; 
+     console.log(string.substring(3,7));
+    
+
+
+
+
+
+
+    
+   
+   
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

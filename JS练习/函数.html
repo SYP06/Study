@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数 </title>
+</head>
+<body>
+    <script>
+//函数声明
+//（name）形参(形式上的参数)；形参随便起，这两个是一样的
+        // function sayhello(name){
+        //     console.log(name);
+        // }
+//函数调用
+//调用里放实参（实际的参数）
+        // sayhello("lisi");
+
+//()内可放多个参数，如下
+        // function sayhello(name,age){
+        //     console.log(name,age);
+        // }
+        // sayhello("lisi",12);
+
+
+//函数中加return就有返回值
+        // function add(a,b){
+        //     return( a + b);
+        // }
+        // var c = add(3,4);
+        // console.log(c);
+        
+
+//在JS中一个函数没有加return，系统自动返回一个undefined(相当于没有返回值)
+        // function sayhello(name,age){
+        //     console.log(name,age);
+        // }
+        // var d = sayhello("lisi",12);
+        //     console.log(d);
+          
+//函数声明：函数提升
+//(可以先调用后声明)
+        // test();
+        // function test(){
+        //     console.log("hehe");
+        // }
+        
+
+//函数表达式(等号右边叫表达式)
+//表达式运算的结果是个值：基本数据值/对象
+//在JS中函数是一个对象
+//函数表达式不允许先调用后声明 
+        // var test = function(){
+        //     console.log("hahha");
+        // };
+        // test();
+
+//函数式编程
+    // function test(){
+    //     return function ( a, b) {
+    //           return a + b;
+    //     }
+    // }
+    // var x = test();
+
+    // console.log(test()(3,4));
+
+    function test (){
+        function xx (a,b){
+             return a + b;
+        }
+        return xx;
+    }
+    test ();//=>xx
+    xx(3,4);
+
+
+        
+    </script>
+    
+</body>
+</html>

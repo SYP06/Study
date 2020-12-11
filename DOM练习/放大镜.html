@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大镜练习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    
+      
+       #small{
+           width: 400px;
+           height: 400px;
+           float: left;
+           position: relative;
+       }
+       #big{
+           width: 400px;
+           height: 400px;
+           overflow: hidden;
+           float: left;
+           display: none;
+           position: relative;
+       }
+       #big img{
+           position: absolute;
+           top: 0;
+           left: 0;
+       }
+       #drag{
+           width: 200px;
+           height: 200px;
+           background: rgba(255, 255, 255, 0.5);
+           position: absolute;
+           top: 0;
+           left: 0;
+           display: none;
+       }
+    
+    </style>
+</head>
+
+<body>
+    <div id="small">
+        <img src="./imgs/s.png" alt="">
+        <div id="drag"></div>
+    </div>
+
+    <div id="big">
+        <img src="./imgs/b.png" alt="">
+    </div>
+    
+    <script>
+        var oSmall = document.getElementById('small');
+        var oBig = document.getElementById('big');
+        var oDrag = document.getElementById('drag');
+        //数组 后面要加[]
+        var oImg = oBig.getElementsByTagName('img')[0];
+
+        //由于是鼠标滑入small显示drag小方块和big；小方块drag是在small中滑动
+        oSmall.onmouseover = function(){
+            oDrag.style.display = 'block';
+            oBig.style.display = 'block';
+            
+            //drag在small里移动的最大位置
+            var maxWidth = oSmall.offsetWidth - oDrag.offsetWidth;
+            var maxHeight = oSmall.offsetHeight - oDrag.offsetHeight;
+
+            oSmall.onmousemove = function(e){
+                //处理小方块的移动(鼠标一直在小方块的中间)
+                oDrag.style.left =e.clientX - oDrag.offsetWidth/2 + 'px';
+                oDrag.style.top =e.clientY - oDrag.offsetHeight/2 + 'px';
+
+
+                // 当drag的宽度小于0，重新回到0；大于最大移动宽度，重新回到最大宽度
+                // offsetleft到父元素左边框的距离,
+                if(oDrag.offsetLeft < 0){
+                    oDrag.style.left = 0;
+                }
+                if(oDrag.offsetLeft> maxWidth){
+                    oDrag.style.left = maxWidth + 'px';
+                }
+                if(oDrag.offsetTop < 0){
+                    oDrag.style.top = 0;    
+                }
+                if(oDrag.offsetTop > maxHeight){
+                    oDrag.style.top = maxHeight +'px';
+                }
+                //大图片最大移动的距离（大图片-大图片的盒子)
+                var maxBigWidth = oImg.offsetWidth - oBig.offsetWidth;
+                var maxBigHeight = oImg.offsetHeight - oBig.offsetHeight;
+                var proportionY = maxBigHeight/maxHeight;
+                var proportionX = maxBigWidth/maxWidth;
+                
+
+                //大图片的移动
+                //成比例
+                oImg.style.left = -(oDrag.offsetLeft * proportionX) + 'px';
+                oImg.style.top= -(oDrag.offsetTop * proportionY )+ 'px';
+
+
+                // oImg.style.left = -(oDrag.offsetLeft * 2) + 'px';
+                // oImg.style.top= -(oDrag.offsetTop * 2 )+ 'px';
+
+            }
+        }
+        oSmall.onmouseout = function(){
+            oDrag.style.display = 'none';
+            oBig.style.display = 'none';
+        }
+        
+
+            
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象</title>
+</head>
+<body>
+    <!-- 
+        对象(object)：everything is object， 一切皆对象
+        只要你关心它，想研究它，不管是具体的事物还是抽象的事物，都是对象
+        面向对象(object-oriented) 简写oo
+        对象的属性（property和方法（method）
+        OOA(analysis)
+        OOD(design)
+        OOP(programing)
+        分析需求中有那些对象>这些对象有哪些属性和方法>对象和对象之间存在什么关联关系
+     -->
+     <!-- 
+         人到图书馆借书
+         对象：
+             人：
+                 属性：姓名 身份证
+             图书馆：
+                 属性：馆名 地址
+             书： 
+                 属性：书名 ISBN
+             管理员
+                 属性：
+                 方法：登记()
+      -->
+      <script>
+//等号后面表达式是完成了一个对象的创建
+//创建对象的几种方法：1.new Object() 直接new object的方式
+          
+          // o1.name='lisi' 给o1这个对象用点添加一个name属性,值为lisi
+          // name 属性名称 property name
+          // age 属性值 property value
+
+         /* var o1 = new  Object();
+          o1.name = 'lisi';
+          o1.age = '23';
+          o1.sayhello = function(){
+            console.log('hahahah');  
+          };
+          o1.sayhello();
+          */
+
+// sayhello 属性的方法 method(当等号后面是个函数的时候就是方法)
+          // console.log(o1);
+          
+
+
+// 2.使用对象直接量(iteral)
+        
+        /* var o2 = {
+            name: 'lisi',
+            age: 12,
+            sayhello: function(){
+            console.log('xixixixi') 
+        }
+        }; 
+        */
+        
+        // console.log(o2);
+
+// 3.Object.create()
+      //该方法创建一个新对象，使现有的对象来提供新创建的对象_proto_
+     // o3 是基于 o1创建的，o3继承了o1中的属性和方法
+     // wangwu是自由属性，lisi是父对象中的属性，自有属性离得近就优先使用
+
+     // songyi, 先将o1的名字改了，o3在继承
+
+        /*
+        o1.name = 'songyi';  
+        var o3 = Object.create(o1);
+        o3.gender = 'male';
+        */
+
+     // wangwu 和 zhoaliu谁前谁后都没有区别，在查找时，先看子元素有没有自有属性，没有的才在父对象中找
+        
+        /* o3.name = 'wangwu'; 
+           o1.name = 'zhaoliu';
+        */
+
+        // console.log(o3);
+        // console.log(o1);
+        
+        // console.log(o3.name);
+
+     //函数声明后面不用加； 赋值需要加分号；
+     //以上两种方法是等同的，推荐第二种写法
+
+     // o4 是一个新的对象，o5和o1相等
+        // var o4 = Object.create(o1);
+        // var o5 = o1;
+        // console.log(o4);
+        // console.log(o5);
+
+        // var o6 =Object.create();
+        // o6.name = 'tianqi';
+        // o6.__gender= 'male';
+
+
+        // o6.__gender= 'female'; 
+        //这么做时错误的 __ 这种带下滑的认定为私有属性，千万不要改
+
+        // console.log(o6.name);
+
+        //原型 prototype ：(模型)相当于做月饼的模子
+
+
+// 4. new class
+// 等号右边时参数，等号前面name是person的属性
+// person是一个构造函数，就是constructor(构造函数就是new后面的函数)
+   //es6
+        /* 
+        class person{
+            constructor(name,a){
+                this.name = name;
+                this. age = a ;
+            }
+        }
+        
+        var p1 = new person('lisi',23);
+        console.log(p1.name , p1.age);
+        */
+
+//es5
+//定义类
+
+//函数名首字母大写，一般被认为是告知这是一个类；看函数里有没有this(这俩不靠谱)
+/* *****前面定义函数首字母大写，后面使用new的关键字来调用，百分百是类
+       结果也可以看出，结果为Person{ } */
+
+    
+        /*
+        function Person(){
+            this.name = 'lisi';
+            this.age = 23;
+        }
+        //创建类的实例对象， p1是Person这个类的实例对象
+        var p1 = new Person();
+        console.log(p1);
+        */
+
+
+/* 先声明了一个类，通过类的构造函数传了一个lisi给function Person(name, age)中的name(形参)，name又给了this.name(属性)一个name属性
+   lisi —> function Person(name, age)的name —> this.name
+*/
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayHello = function(){
+                console.log('My name is '+ this.name + ',hello');
+            }
+        }
+
+        var p1 = new Person("lisi",34);
+        console.log(p1);
+        var p2 = new Person('zhangsan',23);
+        console.log(p2);
+
+//this 是指对当前对象的引用
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayHello = function(){
+                console.log('My name is '+ this.name + ',hello');
+        /* 这个p1或者这个new person就是当前对象；this指向的就是p1 对象
+           this也指向new出来的这个对象，p1也指向这个对象 区别在于 this只能在类中使用，p1随便
+        */
+        var p1 = new Person("lisi",34);
+        console.log(p1);
+
+/* fn指向了一个function，即指向了一个对象，每次new function的时候，都会执行一次sayhello这句话
+    sayhello=fn=一个对象，不会创建新的对象
+    不管创建多少次new person的对象，sayhello方法都指向了一次fn，fn指向了一个对象，相当于永远sayhello方法指向一个对象
+*/
+
+// 不是最佳方案
+        /*var fn = function(){
+            console.log('My name is '+ this.name + ',hello');
+        }
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayHello = fn;
+        }
+        
+        var p1 = new Person("lisi",34);
+        console.log(p1);
+        */
+
+//最佳方案如下
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayHello = fn;
+        }
+        
+
+// 固定语法，放在类后面，在prototype后面添加方法，只要new出来的对象直接调用这个方法不会在创建新的对象
+// 约定：属性放在类的构造中，方法放在类的原型中       
+        Person.prototype.sayHello = function(){
+            console.log('My name is '+ this.name + ',hello');
+        }
+        var p1 = new Person("lisi",34);
+        console.log(p1);
+
+      </script>
+     
+</body>
+</html>

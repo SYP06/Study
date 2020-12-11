@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒模型</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+            /* border中有像素，实心还是虚线等，颜色 */
+            /* border: 1px solid transparent; */
+            /* padding: 10px 20px 40px 60px; padding是增加边框和内容之间的间隙*/
+            /* padding-left: 30px; */
+            /* margin增加元素和元素之间的间隙,margin去掉之后就挨在一起了 */
+            margin: 50px;
+            position: absolute;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin: 80px;
+            
+
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <!-- 这是div -->
+        <div id="div2">
+            <!-- 这是另一个div  -->
+        </div>
+    </div>
+    <!-- 外边距合并 -->
+    <h1>hahahh</h1>
+    
+</body>
+</html>
