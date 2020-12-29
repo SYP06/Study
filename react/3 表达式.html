@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+
+
+  <!-- jsx中表达式要用{}包起来 -->
+  <script type="text/babel">
+  let name = 'zhaosi'
+  let a = 20
+  let b = 15
+  let _style ={color:'blue'}
+  let root = document.getElementById('app')
+    ReactDOM.render( 
+      <div className='container'>
+      <p>姓名：{name}</p>
+      <p>年龄：{a+b}</p>
+      <p style={_style}>爱好：旅游</p>
+      <p style={ {backgroundColor:'#00ff00'} }>职业：作家</p>
+      
+      </div>
+    
+    ,root)
+
+
+  </script>
+</body>
+
+</html>
