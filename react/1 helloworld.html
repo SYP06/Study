@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+  <!-- 用来编译jsx语法 -->
+  <script src="./browser.min.js"></script>
+  <!-- react的核心库，用来管理组件和状态 -->
+  <script src="./react.development.js"></script>
+  <!-- 用来渲染组件的，依赖于devepment.js，必须写在他下面 -->
+  <script src="./react-dom.development.js"></script>
+
+  <!-- 必须要加type,表示这里写的是jsx语法 -->
+  <script type="text/babel">
+
+    // ReactDOM.render(<h1>hello world</h1>, document.getElementById('app'))
+    let root = document.getElementById('app')
+    ReactDOM.render(<h1>hello world</h1>, root)
+
+
+  </script>
+</body>
+</html>
