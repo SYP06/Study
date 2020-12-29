@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .name{
+        background-color: blue;
+      }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+
+
+    <!-- 特殊属性
+       1 class->className
+       2 for->htmlFor
+       2 单标签必须闭合
+
+
+    
+    -->
+    <script type="text/babel">
+    let root = document.getElementById('app')
+    ReactDOM.render(
+        <div>
+            <h1>helloworld</h1>
+            <div className='name'>helloworld</div>
+            <label htmlFor="name">请输入：</label>
+            <input type="name"/>
+        </div>
+    
+    
+    ,root)
+    
+    </script>
+</body>
+</html>
