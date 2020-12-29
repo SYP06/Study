@@ -33,6 +33,11 @@ export default {
           name:'聊天',
           bgColor:'#eeb090'
         },
+         {
+          path:'/test',
+          name:'test',
+          bgColor:'#eeb090'
+        },
       ]
     }
   },
