@@ -18,7 +18,11 @@
 
   <!-- 必须要加type,表示这里写的是jsx语法 -->
   <script type="text/babel">
-    ReactDOM.render(<h1>hello world</h1>, document.getElementById('app'))
+
+    // ReactDOM.render(<h1>hello world</h1>, document.getElementById('app'))
+    let root = document.getElementById('app')
+    ReactDOM.render(<h1>hello world</h1>, root)
+
 
   </script>
 </body>
