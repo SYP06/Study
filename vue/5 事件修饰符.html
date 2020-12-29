@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background-color: #ff0000;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- .stop 阻止事件冒泡 stopPropagation() 
+         .prevent 阻止默认行为 preventDefault()
+         .once 只能执行一次
+    
+    -->
+    <div id="app">
+        <div id="div1" v-on:click.once='fn1'>
+            div1
+            <div id="div2" @click.stop="fn2">div2</div>
+        </div>
+        <a @click.prevent="fn3"  href="http://www.baidu.com>">百度一下</a>
+    </div>
+    
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                fn1(){
+                    console.log('div1');
+                },
+                fn2(){
+                    console.log('div2');
+                },
+                fn3(){
+                    console.log('00000');
+                }
+
+
+            }
+        })
+    </script>
+</body>
+</html>

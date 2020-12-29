@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p v-html='msg'></p>
+        <p v-text='msg'></p>
+    </div>
+    <!-- v-html插入一段html代码（如可以加入a标签） 
+        
+        {{}}和v-text区别：渲染方式有区别，{{}}能看到改变过程
+    
+    -->
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                
+                msg:'<a href="">百度一下</a>'
+            }
+        })
+    </script>
+
+</body>
+</html>

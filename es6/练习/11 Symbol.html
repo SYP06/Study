@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        基本数据类型
+        string number boolean undefined null
+        es6: Symbol
+        引用类型：
+        数组 对象
+     -->
+    <script>
+        let aaa =Symbol();
+        console.log(aaa);//Symbol()
+
+        let bbb =Symbol();
+        console.log(bbb);//Symbol()
+
+        console.log(aaa ==bbb);//false
+        console.log(Object.is(aaa,bbb));//false
+
+        let obj1={
+            name:'wangwu',
+            age:69,
+            [aaa]:'aaa',
+            [bbb]:'bbb',
+            [Symbol()]:'s1',
+            [Symbol("s2")]:'s2',//给symbol添加描述
+
+        }
+        //获取属性值
+        console.log(obj1);
+        console.log(obj1.name);//wangwu
+        console.log(obj1[aaa]);//aaa 取symbol的值 如果属性名是symbol的时候只能通过这种方式取值
+        console.log(obj1[Symbol('s2')]);//undefined
+        
+        //插入属性值
+        obj1.weight ='88kg';
+        console.log(obj1);
+        obj1[Symbol('s3')] ='s3';
+
+        //Symbol属性无法通过循环取到 => 只能一个一个拿
+        for(let p in obj1){
+            console.log(p);
+            console.log(obj1[p]);
+        }
+
+        
+
+
+
+
+
+    </script>
+</body>
+</html>

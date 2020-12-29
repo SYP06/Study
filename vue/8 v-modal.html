@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- v-modal 双向数据绑定，只用于表单元素 -->
+    <div id="app">
+        <p>
+            <input type="text" v-model="msg">
+        </p>
+    <!-- 复选框 -->
+        <p>
+            <input type="checkbox" v-model="fruit" value="apple">苹果
+            <input type="checkbox" v-model="fruit" value="pear">梨
+            <input type="checkbox" v-model="fruit" value="banana">香蕉
+        </p>
+    <!-- 单选框 -->
+        <p>
+            <input type="radio" v-model="sex" value="0">男
+            <input type="radio" v-model="sex" value="1">女
+        </p>
+    <!-- 下拉框 -->
+         <p>
+             <select v-model ="city">
+                 <option value="哈">哈尔滨</option>
+                 <option value="齐">齐齐哈尔</option>
+                 <option value="牡">牡丹江</option>
+                 <option value="佳">佳木斯</option>
+                 <option value="密">密山 </option>
+             </select>
+
+         </p>
+
+
+    </div>
+    <!-- data的''里面是空的，刷新页面就是空的，里面有值，初始进去就显示这个值 -->
+    <script src=".//vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'',
+                fruit:[
+                    "pear"
+                ],
+                sex:1,
+                city:"",
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

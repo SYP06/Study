@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        模块化：基本上单纯的js，工具类函数，解决一个小问题
+        组件化：有样式
+     -->
+     <div id="app1">
+         <!-- 第二步：引用 哪里需要放哪里 (2 再将要加的放在my-com中,传变量的话前面加：)-->
+         <my-com message='啥' :msg='msg'></my-com> 
+         <!-- 在app1里面的组件，只能在app1里使用  <2.引入>   {2.要加在哪里}-->
+         <tpl1 :msg ='msg'></tpl1>
+
+     </div>
+     
+
+     <div id="app2">
+
+     </div>
+
+     <script src="./vue.js"></script>
+     <script>
+         //全局组件(在vue外面)
+          //名字和特性
+         Vue.component('my-com',{
+             template: "<p> 66666 {{msg}} {{message}}    </p>", //第一步：先定义(1.想显示别的，还要在这里加)
+             props:[//(3 父组件需要的变量在这注册一下)
+                 "message","msg"
+             ]
+         })
+
+         var vm = new Vue({
+             el:'#app1',
+             data:{
+                 msg:'hello world'
+             },
+             methods:{
+             },
+             //局部属性，在谁里注册就在谁里使用
+             //先起个名字(tpl1),template写要定义的，props注册一下 <1.注册名字，定义>
+             components:{
+                 'tpl1':{
+                     template:'<a href="#">哈哈哈哈哈{{msg}}</a>', //{1.先放要加的东西}
+                     props:[
+                         'msg' //{3，注册一下}
+
+                     ]
+                 }
+             }
+         })
+
+         var vm = new Vue({
+             el:'#app1',
+             data:{
+
+             },
+             methods:{
+
+             }
+         })
+     </script>
+</body>
+</html>

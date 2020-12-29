@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        直接决定dom结构中是否有这个元素，适合判断一次再不更改状态的情况：v-if，v-else-if，v-else (频繁的dom操作)
+        v-show:通过控制元素display显示不显示，频繁切换（规避了dom操作）
+     -->
+
+    <!-- else后面不用跟判断条件 -->
+    <div id="app">
+        <button @click="change">change</button>
+        <p v-if="tag">好好学习，天天向上</p>
+        <p v-else>不好好学习完蛋</p>
+
+        <p v-show="tag">哈啊哈哈啊哈哈</p>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                tag:true,
+            },
+            methods:{
+                change(){
+                    this.tag =!this.tag
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: 1000px;
+  margin: 0 auto;
+  background: #ee0066;
+  border: 1px solid #0000;
+}
+#container .box1 {
+  width: 800px;
+  height: 300px;
+  background-color: #cccc;
+  border: 1px solid #0000;
+}
+#container .box1 a {
+  background-color: red;
+}
+#container .box1 a:hover {
+  background-color: blue;
+}
+#container .box1-item {
+  color: green;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+#container .box1 #student-list li {
+  list-style: none;
+  width: 200px;
+  color: #ee0066;
+}
+#container .box2 {
+  width: 400px;
+  height: 400px;
+  padding: 10px;
+  background-color: blue;
+}
+#container .box3 {
+  width: 40px;
+  height: 20px;
+  padding: 5px;
+  background-color: red;
+}
+#container .box4, #container .box5 {
+  width: 20px;
+  height: 20px;
+}
+#container .box5 {
+  font-size: 50px;
+}
+#container .box6 {
+  width: 160px;
+  height: 30px;
+}
+#container .box7 {
+  background: #cccc url("./imgs/bg.jpg");
+}
+#container .box7::after {
+  content: "HELLO WORLD!";
+  font-size: 12;
+  content: 5;
+  content: "hello 666 world!";
+}
+#container .box7 .box8 {
+  color: #ee0066;
+  color: #ffeef5;
+  color: #88003a;
+  color: #ee0066;
+  color: rgba(238, 0, 102, 0.7);
+}
+#container .box9 {
+  border: 1px solid #0000;
+  border: 1px solid red;
+  border: 2;
+  border: 1px solid #779900;
+  color: #0000;
+  z-index: 3;
+}
+#container .box10 {
+  color: color1, color2, color3;
+  color: red, green, blue;
+  color: false;
+}
+#container .item i {
+  width: 100px;
+}
+#container .item i {
+  width: 200px;
+}
+#container .item i {
+  width: 300px;
+}
+#container .item i {
+  width: 400px;
+}
+#container .item i {
+  width: 500px;
+}
+#container .item i {
+  width: 600px;
+}
+#container .item i {
+  width: 700px;
+}
+#container .item i {
+  width: 800px;
+}
+#container .item i {
+  width: 900px;
+}
+#container .item i {
+  width: 100px;
+}
+#container .item i {
+  width: 200px;
+}
+#container .item i {
+  width: 300px;
+}
+#container .item i {
+  width: 400px;
+}
+#container .item i {
+  width: 500px;
+}
+#container .item i {
+  width: 600px;
+}
+#container .item i {
+  width: 700px;
+}
+#container .item i {
+  width: 800px;
+}
+#container .item i {
+  width: 900px;
+}
+#container .item i {
+  width: 1000px;
+}
+#container .item-item {
+  width: 1px;
+}
+#container .item-item {
+  width: solid;
+}
+#container .item-item {
+  width: #0000;
+}
+#container .student-1 {
+  padding: 20px;
+}
+#container .student-2 {
+  padding: 20px;
+}
+#container .student-3 {
+  padding: 20px;
+}
+#container .student-4 {
+  padding: 20px;
+}
+#container .box11 {
+  color: blue;
+}
+
+/*# sourceMappingURL=index.css.map */

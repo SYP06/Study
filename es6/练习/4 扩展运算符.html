@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        /* 数组的扩展运算符 */
+
+        //拷贝数组
+        let arr1 = [1,2,3,[2,3]];
+        //拷贝了，但是是浅拷贝（改第一层不会变，改第二层会变）
+        let arr2 = [...arr1];
+        console.log(arr2);
+        arr2[3][1] = 666;
+        console.log("arr1",arr1);
+        console.log("arr2",arr2);
+        
+        //让一个数组作为另一个数组的一部分
+        let arr3 = [333,2,...arr1];
+        console.log(arr3);
+  
+        // 将多个数组连在一起
+        let arr4 =[4,5];
+        let arr5 = ['a','b'];
+        let arr6 = arr4.concat(arr5);
+        console.log(arr6);
+        //有顺序的，谁在前面先谁
+        let arr7 = [...arr4,...arr5];
+        console.log(arr7);
+
+        let b1 = [1,2,[3,4]];
+        let b2 = [6,7,...b1];
+        console.log(b2);//6,7,1,2,[3,4]
+
+        //4 把类数组转换成数组
+        let aLi = document.getElementsByTagName('li');
+        // aLi.push('qwe');
+        console.log(aLi);
+
+        let aLI = [...aLi];
+        aLI.push('qwe')
+        console.log(aLI);
+
+
+
+
+
+
+
+
+        /* 对象的扩展运算符 */
+        //拷贝对象
+        let obj1 = {
+            name:'lisi',
+            age:12
+        }
+        let obj2 = {
+            ...obj1
+        }
+        console.log(obj2);
+
+        //让对象作为另一个对象的一部分
+        //属性重名的话会覆盖前面的
+        let obj3 = {
+            sex:"female",
+            name:"zhaosi",
+            ...obj1
+        }
+        console.log(obj3);
+
+        //将多个对象连在一起
+        let obj4 ={
+            height:"183cm"
+        }
+        let obj5 = {
+            ...obj1,
+            ...obj4,
+        }
+        console.log(obj5);
+
+
+
+
+    </script>
+</body>
+</html>

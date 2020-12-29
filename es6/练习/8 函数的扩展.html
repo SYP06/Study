@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        this的指向:(给谁绑定事件/方法，这个this就是谁)
+        1 事件处理函数中 this->绑定事件的dom元素
+        2 在自定义函数中 this-> window
+        3 在定时器中 this -> window
+        4 在自定义对象中 this ->对象
+        5 在类中 this ->实例化出来的对象(new 出来)
+     -->
+     <div id="div1">div1</div>
+     <ul>
+         <li>1</li>
+         <li>2</li>
+         <li>3</li>
+     </ul>
+    <script>
+        let oDiv1 = document.getElementById('div1');
+        oDiv1.onclick = function(){
+            console.log(this);//oDiv1
+           //window 调用了settimeout
+            setTimeout(function(){
+                console.log(this);//window
+            },1000)
+        }
+/* **************************************************** */
+        function fn5(x,y,z=666){
+            // z = z||666;
+            console.log(x,y,z);
+            console.log(this);//window
+        }
+        fn5(1,2)
+
+/* ****************************************************** */
+        let obj1 ={
+            name:'lisi',
+            age:35,
+            eat:function(){
+                console.log(this);
+                console.log('lisi is eating');
+            }
+        }
+        obj1.eat();
+
+/* ****************************************************** */
+
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            console.log(this);//p1 p2
+        }
+        let p1 = new Person('wangwu',88);
+        let p2 = new Person('zhaosi',66);
+
+/* ****************************************************** */
+      /* 
+      改变this指向的方法：call()
+      call:参数是多个 (要改变的指针，后面所有的参数都是这个方法的实参)
+      apply：参数是两个 （要改变的指针，[parm1.parm2,...]
+      bind:参数是多个 (要改变的指针，后面所有的参数都是这个方法的实参) 手动调用 
+      */
+
+    //   function fn6(a,b){
+    //       console.log(a,this);
+    //   }
+    //   fn6(1,2);//1 window
+    //   fn6.call(oDiv1,'call') //call oDiv1
+    //   fn6.apply(oDiv1,['apply']) //apply oDiv1
+    //   fn6.bind(oDiv1,'bind')() //bind oDiv1
+
+    //   let aLi = document.getElementsByTagName('li');
+    //加了call之后，延迟函数失效了
+    //   for (let i=0; i<aLi.length;i++){
+    //       aLi[i].onclick= function(){
+    //           console.log(this);//aLi[i]
+    //           setTimeout(function(){
+    //               console.log(this);//window //aLi[i]
+    //           }.call(this),1000)
+    //       }
+    //   }
+
+    // 用bind 延迟函数有效
+    //   for (let i=0; i<aLi.length;i++){
+    //       aLi[i].onclick= function(){
+    //           console.log(this);//aLi[i]
+    //           setTimeout(function(){
+    //               console.log(this);//window //aLi[i]
+    //           }.bind(this),1000)
+    //       }
+    //   }
+ 
+
+    /* 箭头函数的this问题
+       1 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象
+       (箭头函数内部的this指向的是父作用域中的this)
+       (如果箭头函数被非箭头函数包含，则this指向的就是最近一层非箭头函数中的this，否则就是全局对象)
+     */
+
+    //   for (let i=0; i<aLi.length;i++){
+    //       aLi[i].onclick= function(){
+    //           console.log(this);//aLi[i]
+    //           setTimeout(()=>{
+    //               console.log(this);
+    //           },1000)
+    //       }
+    //   }
+
+    //   let obj8 = {
+    //       list:[1,2,3],
+    //       study:function(){
+    //           console.log(this);//obj8
+    //           let obj9 ={
+    //               name:'zhaosi',
+    //               code:function(){
+    //                   console.log(this);//obj9
+    //               }
+    //           }
+    //           obj9.code();
+    //       }
+    //   }
+    //   obj8.study();
+
+
+    //   let obj8 = {
+    //       list:[1,2,3],
+    //       study:function(){
+    //           console.log(this);//obj8
+    //           let obj9 ={
+    //               name:'zhaosi',
+    //               code:()=>{
+    //                   console.log(this);//obj8
+    //               }
+    //           }
+    //           obj9.code();
+    //       }
+    //   }
+    //   obj8.study();
+
+
+    //   let obj8 = {
+    //       list:[1,2,3],
+    //       study:function(){
+    //           console.log(this);//obj8
+    //           setTimeout(function(){
+    //             let obj9 ={
+    //               name:'zhaosi',
+    //               code:()=>{
+    //                   console.log(this);//window
+    //               }
+    //           }
+    //           obj9.code();
+    //           },1000)
+    //       }
+    //   }
+    //   obj8.study();
+
+
+    //    let obj8 = {
+    //       list:[1,2,3],
+    //       study:function(){
+    //           console.log(this);//obj8
+    //           setTimeout(()=>{
+    //             let obj9 ={
+    //               name:'zhaosi',
+    //               code:()=>{
+    //                   console.log(this);//obj8
+    //               }
+    //           }
+    //           obj9.code();
+    //           },1000)
+    //       }
+    //   }
+    //   obj8.study();
+
+
+      let obj8 = {
+          list:[1,2,3],
+          study:()=>{
+              console.log(this);//window
+              setTimeout(()=>{
+                let obj9 ={
+                  name:'zhaosi',
+                  code:()=>{
+                      console.log(this);//window
+                  }
+              }
+              obj9.code();
+              },1000)
+          }
+      }
+      obj8.study();
+
+
+      
+
+
+        /* 1 给参数设置默认值 */
+        // function fn1(x,y,z=666){
+        //     // z = z||666;
+        //     console.log(x,y,z);
+        // }
+        // fn1(1,2)
+
+        /* 2 箭头函数 */
+        //函数表达式没有函数声明
+        // let fn2 = function(){}
+        // let fn2 =()=>{} //let fn2 = function(){}
+  
+        /* 3 rest */
+        // let fn3 =(x,y,z=999,...rest)=>{
+        //     console.log(rest);
+        // } 
+        // fn3(1,2,3,4,5)
+        
+        /* 4 新增属性 */
+        //没有设置默认值的参数的长度
+        // console.log(fn3.length);//2
+        // console.log(fn3.name);//fn3
+
+        /* 5 箭头函数扩展  */
+        // let fn4 =(x,y,z=999,...rest)=>{
+        //     console.log(rest);
+        //     console.log(arguments);//报错，箭头函数没有arguments属性
+        // } 
+        // fn4(1,2,3,4,5) 
+
+    </script>
+</body>
+</html>

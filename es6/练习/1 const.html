@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>const</title>
+</head>
+<body>
+    <!-- 
+        var 和const的区别
+        1 const也不存在变量提升
+        2 const不允许重复声明
+        3 赋值以后不允许更改变量的值,引用数据类型不能改地址
+
+
+     -->
+    <script>
+        const num =10;
+        console.log(num);
+
+        // console.log(str);
+        // const str ="hi";
+
+        // const num = 20;
+        // console.log(num);
+
+        // num =20;
+        // console.log(num);
+
+        const  obj1 = {
+            name:'lisi',
+        }
+        // obj1.name = 'zhaosi';
+        obj1 ={
+            age:23
+        }
+        console.log(obj1)
+    </script>
+    
+</body>
+</html>

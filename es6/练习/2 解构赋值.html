@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解构赋值</title>
+</head>
+<body>
+    <script>
+        /* 1 数组的解构 */
+        var arr1 =[1,2,3];
+        // var a0 = arr1[0];
+        // var a1 = arr1[1];
+        // var a2 = arr1[2];
+        // console.log(a0,a1,a2);
+
+        // let [a0,a1,a2] = arr1;
+        // console.log(a0,a1,a2);
+
+        // let [a0,a1,a2,a3] = arr1;
+        // console.log(a0,a1,a2,a3);//undefined
+
+        // let [a0,,a2,] = arr1;
+        // console.log(a0,a2);//1,3
+
+        // let [a0,a2,] = arr1;
+        // console.log(a0,a2);//1,2
+
+
+        /* 2 对象的解构 */
+        let obj1 ={
+            //key:value
+            name:'lisi',
+            age:'18'
+        }
+        //变量名和属性名要一致
+        // let {name,age} =obj1;
+        // console.log(name ,age);
+  
+        //和顺序没有关系
+        // let {age,name} =obj1;
+        // console.log(name ,age);
+
+        // let {x,y} =obj1;
+        // console.log(x ,y);// undefined undefined
+
+        //起别名
+        // let {
+        //     age:x,
+        //     name:y,
+        // }=obj1;
+        // console.log(x ,y);//18 lisi
+        // console.log(name ,age);//如果起了别名，原名就失效了
+
+        /* 3 字符串的解构 */
+        //同数组
+        let str ='hello';
+        let [s1,s2,s3,s4,s5] = str;
+        console.log(s1,s2,s3,s4,s5);
+
+        /* 4 函数参数的解构 */
+        function fn1([x,y,z]){
+            console.log(x,y,z)
+        }
+        fn1([1,2,3])
+
+
+        function fn2([x,y,z]){
+            console.log(x,y,z)
+        }
+        fn2([1,2])
+
+
+        //给参数设置默认值新方式
+
+        function fn3([x,y=333,z=999]){
+            //给函数设置默认值
+            // z = z || 666;
+            console.log(x,y,z)
+        }
+        fn3([1,2])
+        fn3([1,2,null])//1，2，null
+        fn3([1,2,3,4])//1,2,3
+
+
+        /* 
+        变量的交换
+         x=666;
+         y=888;
+             => x=888;
+                y=666;
+         */
+         
+        //  let x=666;
+        //  let y=888;
+         //方案一:暂存变量
+        //  let temp = x ;
+        //  x=y;
+        //  y=temp;
+        //  console.log(x,y);
+
+        //方案二: 
+        // [x,y]=[y,x];
+        // console.log(x,y);
+
+        //方案三：
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

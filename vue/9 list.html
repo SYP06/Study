@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg" @keyup="search">
+        <button @click='add'>添加</button>
+        <ul>
+            <li v-for="(item,index) in showList" @click = 'change(item)' v-bind:class="{active:item.isActive}">
+                <span>{{item.content}}</span>
+                <button @click.stop="del(index)">删除</button>
+            </li> 
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'',
+                list:[{
+                    content:'1111',
+                    isActive:false
+                },
+                {
+                    content:'2222',
+                    isActive:false
+                }],
+                showList:[{
+                    content:'1111',
+                    isActive:false
+                },
+                {
+                    content:'2222',
+                    isActive:false
+                }],
+                // isActive:false,
+
+            },
+            methods:{
+                add(){
+                    this.list.push({
+                        content:this.msg,
+                        isActive:false,
+                    });
+                    this.showList=[...this.list];
+                    //添加成功hou清空输入框，方便下次操作
+                    this.msg = '';
+                },
+                //类的切换
+                change(obj){
+                    obj.isActive = !obj.isActive;
+                    this.showList=[...this.list];
+
+                },
+                //选中元素从数组中删除
+                del(index){
+                    this.list.splice(index,1);
+                    this.showList=[...this.list];
+
+                },
+                search(){
+                    //this.msg
+                    this.showList =this.list.filter(function(obj,index){
+                        return obj.content.includes(vm.msg) 
+                    })
+                }  
+            }
+        })
+    </script>
+</body>
+</html>

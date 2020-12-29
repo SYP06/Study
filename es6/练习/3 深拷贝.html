@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝和浅拷贝</title>
+</head>
+<body>
+    <script>
+        let obj1={
+            name:'lisi',
+            age:'28',
+            brother:{
+                name:'zhaosi',
+                age:23
+            }
+        }
+        //赋值，不是拷贝
+        // let obj2 = obj1;
+        // console.log(obj2);
+        // obj2.name = 'wangwu';
+        // console.log(obj1); //wangwu
+
+
+        //浅拷贝
+        // function clone(obj){
+        //     let o ={};
+        //     for (p in obj){
+        //         o[p] = obj[p];
+        //     }
+        //     return o
+        // }
+        // let obj3 = clone(obj1);
+        // console.log(obj3);
+        // obj3.name = 99;
+        // console.log(obj1);
+
+        //深拷贝
+        function clone(obj){
+            let o = obj.constructor == Array ? []:{};
+            // let o = {};
+            for(let p in obj){
+                if(typeof obj[p]=== 'object' ){
+                    o[p] = clone(obj[p]);
+                }else{
+                    o[p] = obj[p];
+                }
+            }
+            return o
+
+        }
+        let obj3 = clone(obj1);
+        console.log(obj3);
+        obj3.brother.age = 99999;
+        console.log(obj1);
+
+    </script>
+    
+</body>
+</html>

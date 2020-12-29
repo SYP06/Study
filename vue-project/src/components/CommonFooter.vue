@@ -1,0 +1,82 @@
+<template>
+   <footer id="footer" :style="{ backgroundColor: curMenu.bgColor  }">
+     <div v-for="obj in menuList" :key="obj.path" @click="changeMenu(obj)">
+       <router-link :to="obj.path">{{obj.name}}</router-link>
+     </div>
+   </footer>
+</template>
+
+<script>
+import { mapState, mapMutations} from "vuex"
+export default {
+  
+  data() {
+    return {
+      menuList:[
+        {
+          path:'/',
+          name:'剧集',
+          bgColor:'#ff0000'
+        },
+        {
+          path:'/music',
+          name:'音乐',
+          bgColor:'#ff00ff'
+        },
+        {
+          path:'/book',
+          name:'书籍',
+          bgColor:'#cc0db0'
+        },
+        {
+          path:'/chat',
+          name:'聊天',
+          bgColor:'#eeb090'
+        },
+      ]
+    }
+  },
+  computed: {
+    ...mapState(["curMenu"])
+  },
+
+  created() {
+    this.menulist.forEach((value)=>{
+      if(value.path == this.$route.path){
+        this.setCurMenu(value)
+      }
+    })
+  },
+  methods: {
+    ...mapMutations(["setCurMenu"]),
+    changeMenu(obj){
+      this.setCurMenu(obj);
+
+       
+    }
+  },
+
+}
+</script>
+
+<style lang="scss" scoped>
+ footer{
+       display: flex;
+       justify-content: space-around;
+       width: 100%;
+       height: 1rem;
+       line-height: 1rem;
+       text-align: center;
+       background: #ff0000;
+       position: fixed;
+       bottom: 0;
+       left: 0;
+       a{
+         color: #000000;
+       }
+       .router-link-exact-active{
+         color: #ffffff;
+       }
+
+   }
+</style>

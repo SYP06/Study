@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let m1 = new Map();
+        //添加成员 set()
+        m1.set('name','liuneng');
+
+        //不允许有重名的key，否则后面的值会覆盖前面的
+        m1.set('name','zhoasi');
+        m1.set('age',88);
+
+        //获取长度
+        console.log(m1.size);
+
+        //获取数据 get()
+        console.log(m1.get('age'));//88
+
+        //判断是不是有某个key boolean
+        console.log(m1.has('name'));//true
+
+        //删除数据 delete
+        // console.log(m1.delete('age'));
+
+        //清空clear()
+        // m1.clear()
+
+        //循环
+        for(let [index,value] of m1.entries()){
+            console.log(index,value);
+        }
+
+        /*WeakMap  */
+        let wm1 = new WeakMap();
+        // wm1.set("name",'wangwu');//报错 键名只能用对象，别的不行
+        wm1.set({
+            name:'wangwu'
+        },'666')
+        console.log(wm1);
+
+
+
+        console.log(m1);
+    </script>
+</body>
+</html>

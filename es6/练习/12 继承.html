@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 类：是具有相同属性和方法的对象的集合
+           1 构造安徽念书的名字要大写（为了和普通函数区分开）
+           2 属性写在构造函数里
+           3 方法写在原型里(原型就是prototype)
+        
+         */
+        function Person (name,age){
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.sleep = function(){
+            console.log(this.name  + 'is sleeping');
+        }
+        /* 原型是什么？
+          只有构造函数有原型，普通函数没有
+          原型设计出来的目的就是为了实现继承，在原型下面添加的所有属性和方法都会被实例化对象所继承
+          当访问一个对象中的属性或方法的时候，会先去这个对象的构造函数中去找有没有这个属性和方法
+             有 =>返回找到的值
+             没有 =>就到这个对象的原型中去找有没有那个属性和方法
+               还没有 => 就到他的上一级(也就是他的父类)的构造函数和原型中去找
+                 还没有 Object
+                   还没有 =>属性：undefined 方法：xx is not a function
+        */
+
+         /* 为什么属性不放在原型里写？
+          1 如果属性的值还是一个对象的话，可能会出现原型中的属性的值被篡改
+          2 不能通过传参给属性赋值
+
+
+          */
+          Person.prototype.gender = 'male';
+          Person.prototype.brother ={
+              name:'lisi',
+              age:88
+          }
+
+          let p1 = new Person('p1',23);
+          let p2 = new Person('p2',66);
+          
+          console.log(p1);
+          /* p1.gender = female 不是添加到Person.prototype.gender = 'male';
+             而是添加到p1的构造函数里，log p1.gender时会先去构造函数里找，所以是female
+           */
+          p1.gender = 'female';//赋值：p1添加一个gender属性 =>female
+          console.log(p1.gender);//female 查找有gender这个属性
+          //构造函数里没有p2.gender,直接去原型里找，所以是male
+          console.log(p2.gender);//male
+
+          p1.brother.age = 55;
+          console.log(p2.brother.age);//55 原型里的属性被修改了
+
+
+        /* 继承
+        1 在子类的构造函数中，要用call（）继承父类中的属性
+        2 子类的prototpye = 父类的实例化对象，用来继承父类中的方法
+        3 让子类的constructor指回子类
+        
+        
+         */
+        function Student (name,age,grade){
+            Person.call(this,name,age)//改变person中的this指向，使其指向student的实例化对象
+            this.garde = grade;
+        }
+
+        Student.prototype = new Person() //继承到Person里面的所有方法,prototype必须是函数里才有，对象里没有
+        // Student.prototype = Person.prototype;//不能这么写，给student添加的方法也会添加到Person中
+        Student.prototype.constructor =Student;//为了将student的构造函数改回来
+        
+        console.log(Student.prototype);
+        
+        Student.prototype.code =function(){
+            console.log(this.code + 'is codeing...');
+        }
+        
+        let s1 = new Student('wangwu',23,"20级");
+
+        console.log(s1.constructor == Student);//false 看s1的构造函数是不是Student
+        console.log(p1.constructor == Person);//true
+        s1.sleep();
+
+        /* 在没有添加Student.prototype.constructor =Student时，以下是true */
+        console.log(s1.constructor == Person);//true 
+
+        
+    </script>
+</body>
+</html>

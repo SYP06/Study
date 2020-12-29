@@ -1,0 +1,158 @@
+@charset "utf-8"; 
+@import './main.scss'; //引用别的scss文件
+$color:#ee0066;
+//默认变量
+$color:#0000!default;
+$student:'#student-list li';
+$attr:width;
+#container{
+    width: 1000px;
+    margin: 0 auto;
+    background:$color;
+    border: 1px solid #0000;
+    .box1{
+        width: 800px;
+        height: 300px;
+        background-color: #cccc;
+        border: 1px solid #0000;
+    a{
+        background-color: red;
+        &:hover{
+            background-color: blue;
+        }
+    }
+    &-item{
+        color: green;
+        //属性的嵌套
+        padding: {
+            top: 20px;
+            left: 20px;
+        };
+    }
+    // 特殊变量
+    #{$student}{
+        list-style: none;
+        #{$attr}:200px;
+        color: #{$color};
+        
+    }
+    }
+    //混合宏（若给变量设置变量的话，则所有变量都要设置，否则报错）
+    @mixin box($w:400px,$h:200px,$p:10px) {
+        width: $w;
+        height: $h;
+        padding: $p;
+        
+    }
+    //若传的参数不全，则需指明所传参数的含义
+    .box2{
+        @include box($h:400px,$p:10px );
+        background-color: blue;
+        
+    }
+    .box3{
+        @include box(40px,20px ,5px );
+        background-color: red;
+    }
+    .box4{
+        width: 20px;
+        height: 20px;
+    }
+    .box5{
+        //继承
+        @extend.box4;
+        font-size: 50px;
+    }
+    .box6{
+        //只能写一个单位
+        width: 20px * 8;
+        //除号加括号，除数不能有单位
+        height: (90px/3);
+    }
+    // 字符串的拼接和字母大写
+    $img:'bg';
+    $str:'hello world!';
+    .box7{
+        background: #cccc url('./imgs/'+ $img+'.jpg');
+        &::after{
+            content: to-upper-case($str);
+            //返回的长度没有单位，不能直接作为属性的值
+            font-size: str-length($str);
+            //从1开始数
+            content: str-index($str,  "o");
+            //字符串，要加的,加在的位置索引
+            content: str-insert($str, " 666" ,6);
+        }
+    .box8{
+        color: $color;
+        color: lighten($color, 50%);
+        color: darken($color, 20%);
+        color: opacify($color, 0.3);
+        color: transparentize($color, 0.3);
+
+    }
+    }
+    $list1:1px solid #0000;
+    $list2:1px solid;
+    $list3:#779900;
+    .box9{
+        border: $list1;
+        border: append($list2, red);
+        border: index($list1, solid );
+        border: join($list2 , $list3);
+        //返回对应的值
+        color: nth($list1, 3);
+        z-index: length($list1);
+    }
+    $map:(color1:red,color2:green,color3:blue);
+    .box10{
+        color: map-keys($map);
+        color: map-values($map);
+        color: map-has-key($map,blue);
+    
+    }
+    // to到9，through到10
+    @for $i from 1 to 10 {
+        .item #{i}{
+            width: 100px*$i;
+        }
+    }
+    @for $i from 1 through 10 {
+        .item #{i}{
+            width: 100px*$i;
+        }
+    }
+    @each $item in $list1 {
+        .item-#{item}{
+            width: #{$item};
+        }  
+    }
+
+    $i:1;
+    @while  $i<5{
+        .student-#{$i}{
+            padding:20px;
+        }
+        $i:$i+1;
+    }
+
+
+    @function fn1($n){
+        @if($n==0){
+            @return red;
+        }@else if($n==1){
+            @return green;
+        }@else{
+            //手动添加警告
+            @warn"有问题";
+            //错误就会停止
+            // @error"出错了";
+            @return blue;
+        }
+    }
+    .box11{
+        color: fn1(2);
+    }
+       
+    
+}

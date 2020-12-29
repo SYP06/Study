@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function request1(){
+            let p = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log('1 ok');
+                    resolve();
+                    // reject('失败');如果失败的话
+                },1500)
+            })
+            return p
+        }
+
+        function request2(){
+            let p = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log('2 ok');
+                    resolve()
+                },500)
+            })
+            return p
+        }
+
+        function request3(){
+            let p = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log('3 ok');
+                    resolve()
+                },2500)
+            })
+            return p
+        }
+
+
+        //如果是不加async就是下面的request1，2，3一起出来，上面的request 按照时间设置顺序出来
+        /* function fn1(){
+            console.log('请求 1 要开始了');
+            request1();
+            console.log('请求 2 要开始了');
+            request2();
+            console.log('请求 3 要开始了');
+            request3();
+            console.log('game over');
+        }
+        fn1() */
+
+        // async function fn1(){
+        //     console.log('请求 1 要开始了');
+        //     await request1();
+        //     console.log('请求 2 要开始了');
+        //     await request2();
+        //     console.log('请求 3 要开始了');
+        //     await request3();
+        //     console.log('game over');
+        // }
+        // fn1()
+   
+
+        //如果失败的话，还不想影响继续进行，用trycatch
+        async function fn1(){
+            try {
+                console.log('请求 1 要开始了');
+                await request1();
+            } catch (error) {
+                console.log(error)
+            }
+            console.log('请求 2 要开始了');
+            await request2();
+            console.log('请求 3 要开始了');
+            await request3();
+            console.log('game over');
+        }
+        fn1()
+
+    </script>
+    
+</body>
+</html>

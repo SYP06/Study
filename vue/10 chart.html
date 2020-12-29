@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css不需要用分号隔开 */
+        #chart{
+            width: 400px;
+            margin: 50px auto;
+        }
+        h1{
+            text-align: center;
+        }
+        ul{
+            border-bottom: 1px solid #000000;
+            padding: 0 10px;
+        }
+        li{
+            /* 要给li一个高度，否则设置不上 */
+            height: 40px;
+            line-height: 40px;
+            list-style: none;
+            background-color:pink;
+            margin-bottom:10px;
+            padding: 0 10px;
+            
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float:right;
+        }
+        p{
+            margin: 20px;
+        }
+        #chart li.active{
+            color: #ffffff;
+            background-color:#000000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="chart">
+            <h1>商品列表</h1>
+            <ul>
+                <!-- change传参数是为了让每一个li都可以绑定一个到单独的事件，以达到每点击一个li就会有active的反应 -->
+                <li v-for="item in list" :class='{active:item.isActive}' @click="change(item)">
+                    <!-- 加span是因为需要float；{{}} 中记得加item-->
+                    <span class="left">{{item.name}}</span>
+                    <span class="right">{{item.price}}</span>
+                </li>
+            </ul>
+            <!-- {{sunm()}} 调用methods中的sum函数-->
+            <p>总价：{{sum()}}</p>
+            <!-- 用computed -->
+            <p>总价：{{total}}</p>
+
+
+            <!-- 
+                计算属性和方法调用的区别：
+                方法调用：每当触发重新渲染时(只要data中有数据改变)，方法就会被调用；
+                计算属性：只在相关响应式依赖发生改变时它们才会重新求职（计算量较大时最好用这个）
+             -->
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                count:0,
+                //数组中放对象，有很多属性放在对象中
+                list:[{
+                    name:"衬衫",
+                    price:999,
+                    isActive:false,
+                },
+                {
+                    name:"裙子",
+                    price:1250,
+                    isActive:false,
+                },
+                {
+                    name:"电脑",
+                    price:15800,
+                    isActive:false,
+                },
+                {
+                    name:"裤子",
+                    price:650,
+                    isActive:false,
+                }
+                ]
+
+            },
+            methods:{
+                //传参数，obj是形参
+                change(obj){
+                    obj.isActive = !obj.isActive;
+                },
+                sum(){
+                    //先var一个count，用foreach看每个obj是否是isActive状态，如果是的话进行加和，要有return值（写在外面）
+                    var count = 0;//var后面是分号
+                    this.list.forEach(function(obj,index){
+                        if(obj.isActive){
+                            count += obj.price//这个位置是price
+                        }
+                    })
+                    //一定要return，且return要写在外面(不能写在循环里面)
+                    return count
+                }
+            },
+            computed:{
+                total(){
+                    var count = 0;
+                    this.list.forEach(function(obj,index){
+                        if(obj.isActive){
+                            count += obj.price
+                        }
+                    })
+                    return count
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

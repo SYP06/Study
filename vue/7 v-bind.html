@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            
+            color: blue;
+        }
+        .div2{
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:class="{div1:isDiv1,div2:isDiv2}">123456</div>
+
+        <div v-bind:class="['div1',isDiv2? 'div2':'']">123456</div>
+
+        <button @click="change">change</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                isDiv1:true,
+                isDiv2:false,
+
+            },
+            methods:{
+                change(){
+                    this.isDiv1 = !this.isDiv1,
+                    this.isDiv2 = !this.isDiv2
+
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

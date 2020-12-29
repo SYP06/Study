@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1，先写template，起个名（如：tpl1)
+        2. components 挂载这个template  (template:"#tpl1")
+        3.在app中引入这个tpl (<tpl1></tpl1>)
+        4.想将msg加入，先在props中注册，再在3中:msg="msg",最后在template中想加的位置写上<h1>{{msg}}</h1>
+     -->
+    <template id="tpl1">
+        <div>
+            <h1>{{msg}}</h1>
+            <button @click="add2">我也加</button>
+        </div>
+    </template>
+
+    <div id="app">
+        <p>{{count}}</p>
+        <button @click= "add1">加</button>
+        <tpl1 :msg= "msg" :ad1 = "add1" @son="add1"></tpl1>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:"天天好心情",
+                count:0,
+            },
+            methods:{
+                add1(){
+                    this.count++
+                }
+                
+            },
+            components:{
+                "tpl1":{
+                    template:"#tpl1",
+                    props:[
+                        'msg','ad1'
+                    ],
+                    methods: {
+                        add2(){
+                            //绝对不能这么写 
+                            // vm.count++;
+                            //通过props把父组件中的方法传过来，在子组件中调用（在tpl1中加ad1="add1"，在props中注册一下，在调用就ok）
+                            // this.ad1()
+
+                            //也可以自定义一个事件，通过触发子组件的自定义事件来更改父组件中的状态（推荐）
+                            this.$emit("son")
+
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+</html>

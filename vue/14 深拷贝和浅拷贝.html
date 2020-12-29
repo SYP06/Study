@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 加判断条件之前是浅拷贝，加判断条件之后是深拷贝(如obj3深层的信息被更改后，obj1不会随着更改) -->
+<body>
+    <script>
+        var obj1 = {
+            name:"lisi",
+            age:12,
+            brother:{
+                name:'zhaosi',
+                age:23
+            }
+        }
+        //这是赋值，不是拷贝
+        var obj2 = obj1;
+        console.log(obj2);
+        obj2.name = "wangwu";
+        //wangwu 地址是一样的，两个指向的是同一个内存（栈和堆），一个变两个都变
+        console.log(obj1); 
+
+        function clone(obj){
+            //无论传的是数组还是对象都可以
+            var o = obj.constructor == Array ? []:{}
+
+
+            //新定义了一个对象,obj[p]中p代表obj里面的每一个属性,
+            //写了var o = obj.constructor == Array ? []:{} 下面这个可以去掉
+            // var o ={};
+            for(var p in obj){
+                //不能这么写，对象里没有p这个属性
+                // o.p = obj.p
+               //如果不加判断的话obj3的brother age更改后，obj1的也会更改
+                if(typeof obj[p] === 'object'){
+                    o[p] = clone(obj[p]);
+                }else{
+                    o[p] = obj[p]
+                }
+                
+            }
+            return o
+
+        }
+        var obj3 = clone(obj1); //{name:lisi age:12}
+        console.log(obj3);
+        obj3.age = 99;
+        obj3.brother.age=66666666666;
+        console.log('obj1',obj1);//12
+        console.log('obj3',obj3)
+
+        var arr1 = [1,2,[2,3]];
+        var arr2 = clone(arr1);
+        arr2[2][1]=666666666; 
+        console.log(arr1);
+        console.log(arr2);
+    </script>
+    
+</body>
+</html>
