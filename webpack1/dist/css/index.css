@@ -1,0 +1,14 @@
+h1{
+    color: red;
+}
+#div1{
+    background: url(http://localhost:8081/images/621bd777e428f4677596ad5edfa6a2b7.jpg);
+    height: 500px;
+    transform: rotate(45deg);
+}
+#student{
+    padding:30px
+}
+h2 {
+  color: #35ff90; }
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+  <script type="text/babel">
+  let root =document.getElementById('app')
+  class Com extends React.Component{
+    constructor(props){
+      super(props)
+      this.state={
+        isLogin:false
+
+      }
+      this.change=this.change.bind(this)
+    }
+    change(){
+      this.setState({
+        isLogin:!this.state.isLogin
+      })
+      console.log(this.state.isLogin);
+    }
+    render(){
+      // 条件渲染：if语句，三元表达式
+      let tpl;
+      if(this.state.isLogin){
+        tpl= <p>您好，欢迎来到本网站。。。</p>
+      }else{
+        tpl= <p>请登录</p>
+             
+      }
+      return(
+        <div>
+          <button onClick={this.change}>切换登录状态</button>
+          {tpl}
+          {
+            this.state.isLogin? <p>您好，欢迎来到本网站。。。</p>:<p>请登录</p>
+          }
+        </div>
+      )
+    }
+  }
+  ReactDOM.render( <Com></Com>,root)
+
+  </script>
+</body>
+</html>

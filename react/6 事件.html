@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+  <script type="text/babel">
+    let root = document.getElementById('app')
+    class Com extends React.Component{
+      constructor(props){
+        super(props)
+        this.number = 1
+        this.state={
+          num : 0
+        }
+        //改变自定义事件里的this指向 
+        this.add = this.add.bind(this)
+      }
+      add(){
+        this.setState({
+          // props接收的属性是只读的，不可以修改。会报错
+          // age:this.props.age + 1
+          num:this.state.num +1
+        })
+        console.log(this.state.num);
+      }
+      fn1(){
+        console.log('fn1');
+        console.log(this.number);
+      }
+      jump(e){
+        console.log(e);
+        // 阻止默认行为
+        e.preventDefault()
+      }
+      render(){
+        return (
+          <div>
+            <p>age:{this.props.age}</p>
+
+
+            <p>number:{this.number}</p>
+            <button onClick={this.add}>number+1</button>
+
+
+            <p>num:{this.state.num}</p>
+            <button onClick={this.add}>age+1</button>
+            <button onClick={this.fn1.bind(this)}>点击</button>
+
+            <a onClick={this.jump.bind(this)} href="https://www.baidu.com">百度一下</a>
+            
+          
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Com age={12}></Com> ,root)
+  </script>
+</body>
+</html>

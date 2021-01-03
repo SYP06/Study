@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+  <script type="text/babel">
+  let root = document.getElementById('app')
+  class Com extends React.Component{
+    constructor(props){
+      super(props)
+      this.state={
+
+      }
+    }
+    render(){
+      let arr = [1,2,3,4,5,6]
+      let a1 = []
+      //for 循环可以实现但不推荐，推荐用map
+      for (let i = 0; i < arr.length; i++) {
+        a1[i]=<li key={i}>{arr[i]}</li>
+      }
+      let list = [
+        {
+        name:'lisi',
+        age:21
+        },
+        {
+        name:'liuneng',
+        age:27
+        },
+        {
+        name:'zhaowu',
+        age:98
+        },
+        {
+        name:'xieguangkun',
+        age:76
+      }]
+      // 以下两种方法等价
+      // let _list = list.map((value=>value))
+      // let _list = list.map(( (value)=>{return value}))
+      let _list = list.map((value,index)=>(
+       <li key={index}>
+        <p>姓名：{value.name}</p>
+        <p>年龄：{value.age}</p>
+      </li>
+      ))
+
+      return(
+        <div>
+          <ul>
+            {a1}
+          </ul>
+          <ul>
+            {_list}
+          </ul>
+          <ul>
+            {
+              list.map((value,index)=>(
+                <li key={index}>
+                  姓名：{value.name}
+                  年龄：{value.age}
+              </li>
+              ))
+            }
+          </ul>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<Com></Com> ,root)
+  
+  </script>
+</body>
+</html>

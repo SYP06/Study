@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+
+  <!-- 组件的重新渲染
+    1 调用setState方法
+    2 props改变
+    3 forceUpadate()
+  -->
+  <script type="text/babel">
+  let root = document.getElementById('app')
+  class Child extends React.Component{
+    constructor(props){
+      super(props)
+      this.state={
+        count:0
+      }
+      this.add=this.add.bind(this)
+      this.add2=this.add2.bind(this)
+
+      this.add666= 666
+    }
+    add(){
+      this.setState({
+        count:this.state.count+1
+      })
+    }
+    add2(){
+      this.add666++
+      console.log(this.add666);
+      // 强制性渲染页面
+      this.forceUpdate()
+    }
+    render(){
+      console.log('render');
+      return (
+        <div>
+          <h1>child</h1>
+          <p>{this.state.count}</p>
+          <button onClick={this.add}> +1</button>
+          <p>add666:{this.add666}</p>
+          <button onClick={this.add2}>++1</button>
+          <p>number:{this.props.number}</p>
+        </div>
+      )
+    }
+  }
+  class Parent extends React.Component{
+    constructor(props){
+      super(props)
+      this.state={
+        num:0
+      }
+      this.addFn=this.addFn.bind(this)
+    }
+    addFn(){
+      this.setState({
+        num:this.state.num+1
+      })
+    }
+    render(){
+      return (
+        <div>
+          <h1>parent</h1>
+          <p>{this.state.num}</p>
+          <button onClick={this.addFn}>+1~</button>
+          <Child number={this.state.num}></Child>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<Parent></Parent> ,root)
+  </script>
+</body>
+</html>
