@@ -33,11 +33,6 @@ export default {
           name:'聊天',
           bgColor:'#eeb090'
         },
-         {
-          path:'/test',
-          name:'test',
-          bgColor:'#eeb090'
-        },
       ]
     }
   },
@@ -56,8 +51,6 @@ export default {
     ...mapMutations(["setCurMenu"]),
     changeMenu(obj){
       this.setCurMenu(obj);
-
-       
     }
   },
 
