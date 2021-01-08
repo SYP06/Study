@@ -33,15 +33,17 @@ list1.add('ert');
 var list2 = new List();
 list2.add(123);
 // list2.add(true)
-var User = /** @class */ (function () {
-    function User(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    return User;
-}());
-var user1 = new User('lisi', 19);
-var user2 = new User('wangwu', 17);
-var list3 = new List();
-list3.add(user1);
+/* class User{
+  name:string;
+  age:number;
+  constructor(name:string,age:number){
+    this.name = name;
+    this.age = age;
+  }
+}
+var user1 =new User('lisi',19);
+var user2 = new User('wangwu',17);
+
+var list3 = new List<User>();
+list3.add(user1); */
 // list3.add(123)

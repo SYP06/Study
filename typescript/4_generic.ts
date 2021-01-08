@@ -59,7 +59,7 @@ var list2 = new List<number>()
 list2.add(123) 
 // list2.add(true)
 
-class User{
+/* class User{
   name:string;
   age:number;
   constructor(name:string,age:number){
@@ -71,5 +71,5 @@ var user1 =new User('lisi',19);
 var user2 = new User('wangwu',17);
 
 var list3 = new List<User>();
-list3.add(user1);
+list3.add(user1); */
 // list3.add(123)
