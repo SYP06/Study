@@ -1,12 +1,79 @@
 "use strict";
 /*
-    演示一段用来进行数据库访问操作的案例
-    对于数据库经常用以下操作（CRUD）：
-    1. add：添加记录
-    2. delete: 删除记录
-    3. update: 修改记录
-    4. get: 查询记录
+UserServuceMySQLImpl:MySQL的实体类,使用这个实现类用来对MySQL数据库进行操作
 */
-/**
- * UserService: 针对数据库中user表中的业务操作
- */
+var UserServiceMySQLImpl = /** @class */ (function () {
+    function UserServiceMySQLImpl() {
+    }
+    UserServiceMySQLImpl.prototype.add = function (user) {
+        console.log("username=" + user.getUsername() + ",password=" + user.getPassword() + ",\u5DF2\u6DFB\u52A0\u3002\u3002\u3002");
+        localStorage.setItem('user', JSON.stringify(user));
+        console.log('数据已存入MySQL数据库');
+        return true;
+    };
+    UserServiceMySQLImpl.prototype.delete = function (userId) {
+        throw new Error("Method not implemented.");
+    };
+    UserServiceMySQLImpl.prototype.update = function (userId) {
+        throw new Error("Method not implemented.");
+    };
+    UserServiceMySQLImpl.prototype.get = function (username, password) {
+        throw new Error("Method not implemented.");
+    };
+    return UserServiceMySQLImpl;
+}());
+var UserServiceOracleImpl = /** @class */ (function () {
+    function UserServiceOracleImpl() {
+    }
+    UserServiceOracleImpl.prototype.add = function (user) {
+        console.log("username=" + user.getUsername() + ",password=" + user.getPassword() + ",\u5DF2\u6DFB\u52A0\u3002\u3002\u3002");
+        localStorage.setItem('user', JSON.stringify(user));
+        console.log('数据已存入Oracle数据库');
+        return true;
+    };
+    UserServiceOracleImpl.prototype.delete = function (userId) {
+        throw new Error("Method not implemented.");
+    };
+    UserServiceOracleImpl.prototype.update = function (userId) {
+        throw new Error("Method not implemented.");
+    };
+    UserServiceOracleImpl.prototype.get = function (username, password) {
+        throw new Error("Method not implemented.");
+    };
+    return UserServiceOracleImpl;
+}());
+/*
+User:用户表对应的用户类
+*/
+var User = /** @class */ (function () {
+    function User(userId, username, password) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+    }
+    User.prototype.getUserId = function () {
+        return this.userId;
+    };
+    User.prototype.setUserId = function (userId) {
+        this.userId = userId;
+    };
+    User.prototype.getUsername = function () {
+        return this.username;
+    };
+    User.prototype.setUsername = function (username) {
+        this.username = username;
+    };
+    User.prototype.getPassword = function () {
+        return this.password;
+    };
+    User.prototype.setPassword = function (password) {
+        this.password = password;
+    };
+    return User;
+}());
+var user5 = new User(1, 'lisi', '22222');
+var user6 = new User(2, 'wangwu', '99999');
+// let userService = new UserServiceMySQLImpl();
+var userService = new UserServiceOracleImpl();
+userService.add(user5);
+userService.add(user6);

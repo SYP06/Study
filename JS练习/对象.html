@@ -162,16 +162,16 @@
         console.log(p2);
 
 //this 是指对当前对象的引用
-        function Person(name, age){
-            this.name = name;
-            this.age = age;
-            this.sayHello = function(){
-                console.log('My name is '+ this.name + ',hello');
+        // function Person(name, age){
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sayHello = function(){
+        //         console.log('My name is '+ this.name + ',hello');
         /* 这个p1或者这个new person就是当前对象；this指向的就是p1 对象
            this也指向new出来的这个对象，p1也指向这个对象 区别在于 this只能在类中使用，p1随便
         */
-        var p1 = new Person("lisi",34);
-        console.log(p1);
+        // var p1 = new Person("lisi",34);
+        // console.log(p1);
 
 /* fn指向了一个function，即指向了一个对象，每次new function的时候，都会执行一次sayhello这句话
     sayhello=fn=一个对象，不会创建新的对象
@@ -193,20 +193,20 @@
         */
 
 //最佳方案如下
-        function Person(name, age){
-            this.name = name;
-            this.age = age;
-            this.sayHello = fn;
-        }
+        // function Person(name, age){
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sayHello = fn;
+        // }
         
 
 // 固定语法，放在类后面，在prototype后面添加方法，只要new出来的对象直接调用这个方法不会在创建新的对象
 // 约定：属性放在类的构造中，方法放在类的原型中       
-        Person.prototype.sayHello = function(){
-            console.log('My name is '+ this.name + ',hello');
-        }
-        var p1 = new Person("lisi",34);
-        console.log(p1);
+        // Person.prototype.sayHello = function(){
+        //     console.log('My name is '+ this.name + ',hello');
+        // }
+        // var p1 = new Person("lisi",34);
+        // console.log(p1);
 
       </script>
      
