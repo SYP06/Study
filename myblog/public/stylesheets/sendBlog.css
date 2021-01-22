@@ -1,0 +1,9 @@
+.sendBlog{
+  width: 650px;
+  margin: 50px auto;
+  text-align:center;
+  border:1px solid #cccccc;
+}
+.sendBlog-content{
+  margin:20px 0;
+}

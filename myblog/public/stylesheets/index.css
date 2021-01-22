@@ -1,0 +1,25 @@
+.blog-list{
+  width: 815px;
+  margin: 20px auto;
+}
+.blog{
+  background: #cccccc;
+  padding: 20px;
+  margin: 20px 0;
+}
+.blog-title, .blog-content, .post-time{
+  margin: 20px 0;
+}
+.sendBlog{
+  position: absolute;
+  right: 50px;
+  margin-top: 20px;
+}
+.sendBlog-title{
+  height: 30px;
+  width: 80px;
+  line-height: 30px;
+  background-color: #cccccc;
+  text-align: center;
+  border-radius: 5px;
+}
