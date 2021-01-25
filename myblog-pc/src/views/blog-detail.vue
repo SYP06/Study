@@ -7,13 +7,13 @@
       </div>
       <div class="blog-content">{{blog.content}}</div>
       <div class="comments">
-        <h4>评论</h4>
+        <h4 class="comments-title">评论</h4>
 
-        <div class="comment">
-          <div class="comment-content"></div>
+        <div class="comment" v-for="item in comment" :key="item.comm_id">
+          <div class="comment-content">{{item.comm_content}}</div>
           <div class="comment-info">
-            <span class="userinfo">xxxx</span>
-            <span class="post-time"></span>
+            <span class="userinfo">{{item.username}}</span>
+            <span class="post-time">{{item.comm_post_time}}</span>
           </div>
         </div>
       </div>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       blog:'',
+      comment:'',
     }
   },
   created(){
@@ -33,25 +34,27 @@ export default {
   methods: {
     getBlogDetail(){
       let blogId = this.$route.params.blogId
-      this.$http.get("/blog/detail",{
-        params:{
-          // 给后端传id
-          blogId:blogId
-        },
+      this.$http.get("/blog/detail/"+blogId,{
+        // params:{
+        //   // 给后端传id
+        //   blogId:blogId
+        // },
         headers: {
           Authorization: localStorage.getItem("mytoken"),
         },
       }).then((res) => {
-        let { state,blog } = res.data;
+        console.log(res);
+        this.comment = res.data.blogInfo.comments;
+        let { state,blogInfo } = res.data;
         if (state == "success") {
-         this.blog = blog
+         this.blog = blogInfo
         }
       })
-      // .catch((err) => {
+      .catch((err) => {
        
-      //   console.log(err);
-      //   this.$router.push('/login')
-      // })
+        console.log(err);
+        
+      })
     }
   },
 }
@@ -61,6 +64,7 @@ export default {
   margin: 20px auto;
   padding: 20px;
   background: #cccccc;
+  text-align: left;
 }
 .blog-title{
   padding: 10px;
@@ -69,7 +73,10 @@ export default {
   padding: 10px;
 }
 .comment{
-  padding: 20px;
+  padding: 10px;
+}
+.comments-title{
+  margin-left: 10px;
 }
 .comment-info{
   float: right;

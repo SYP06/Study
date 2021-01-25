@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-        <div class="login-form">
+    <div class="login-form">
       <h3>用户登录</h3>
       
         <p>
@@ -10,7 +10,7 @@
           密码：<input type="password" name="password" v-model="password" >
         </p>
         <p>
-          <button @click="doLogin" id="btn-login">登录</button>
+          <button @click="doLogin" >登录</button>
         </p>
       
     </div>
@@ -32,6 +32,7 @@ export default {
         username:this.username,
         password:this.password
       }).then(res=>{
+        console.log(res);
         let {state,token} = res.data;
         if(state =='success'){
           // 登录成功

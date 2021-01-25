@@ -34,5 +34,5 @@ app.use(session(app));
 
 app.use(blog.routes()).use(blog.allowedMethods());
 app.use(user.routes()).use(user.allowedMethods());
-app.listen(3000)
-console.log('[demo] start-quick is starting at port 3000')
+app.listen(80)
+console.log('[demo] start-quick is starting at port 80')

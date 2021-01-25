@@ -4,6 +4,7 @@ import Login from '../views/login'
 import Index from '../views/index'
 import Regist from '../views/regist'
 import BlogDetail from '../views/blog-detail'
+import SendBlog from '../views/sendBlog'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     name: 'BlogDetail',
     component: BlogDetail
   },
+  {
+    path: '/sendBlog',
+    name: 'SendBlog',
+    component: SendBlog
+  }
 ]
 
 const router = new VueRouter({

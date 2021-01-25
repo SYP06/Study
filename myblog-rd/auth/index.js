@@ -4,7 +4,7 @@ let secretKey = "**my_secret_key$$";
 
 module.exports = {
   createToken: (payload) => {
-    return jwt.sign(payload, secretKey, {expiresIn: 10});
+    return jwt.sign(payload, secretKey, {expiresIn: '1h'});
   },
   verifyToken:async (ctx, next) => {
     if(ctx.header.authorization){

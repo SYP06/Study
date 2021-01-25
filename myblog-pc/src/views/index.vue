@@ -4,13 +4,16 @@
       <div class="blog" v-for="item in blogList" :key="item.blogId">
         <h3 class="blog-title">
           <!-- <a href="/blog/detail">{{item.title}}</a> -->
-          <router-link :to="{ path: '/blog/detail/' + item.blogId }">{{
-            item.title
-          }}</router-link>
+          <router-link :to="{ path: '/blog/detail/' + item.blog_id }">
+          {{item.title}}
+          </router-link>
         </h3>
         <p class="blog-content">{{ item.content }}</p>
-        <span class="post-time">{{ item.postTime }}</span>
+        <span class="post-time">{{ item.post_time }}</span>
       </div>
+    </div>
+    <div class="send-blog">
+      <p><a href="/sendBlog">发表文章</a></p>
     </div>
   </div>
 </template>
@@ -31,8 +34,8 @@ export default {
         if (state == "auth-fail") {
           alert("请求未授权");
         } else if (state == "success") {
-          let { blogs } = res.data;
-          this.blogList = blogs;
+          console.log(res);
+          this.blogList = res.data.blogs;
         }
       })
     },
@@ -54,17 +57,22 @@ export default {
 .post-time {
   margin: 20px 0;
 }
-.sendBlog {
-  position: absolute;
-  right: 50px;
-  margin-top: 20px;
-}
-.sendBlog-title {
-  height: 30px;
+.send-blog {
   width: 80px;
+  height: 30px;
   line-height: 30px;
-  background-color: #cccccc;
   text-align: center;
-  border-radius: 5px;
+  position: absolute;
+  top: 60px;
+  right:20px;
 }
+.send-blog p{
+  background-color: blueviolet;
+  border-radius: 10px;
+}
+.send-blog a{
+  text-decoration: none;
+  color: #ffffff;
+}
+
 </style>

@@ -13,6 +13,7 @@ module.exports = {
   },
   async getBlogDetail(ctx) {
     let {blogId} = ctx.params;
+    console.log('hah',ctx.params);
     let results = await blogModel.getBlogById(blogId);
     if(results.length > 0){
       let {blog_id, title, content, post_time } = results[0];
