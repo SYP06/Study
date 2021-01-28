@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import {  mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -27,17 +28,21 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['storeLoginUser']),
     doLogin(){
       this.$http.post("/user/login",{
         username:this.username,
         password:this.password
       }).then(res=>{
         console.log(res);
-        let {state,token} = res.data;
+        let {state,token,user} = res.data;
         if(state =='success'){
           // 登录成功
           // 存储token
-          this.$store.dispatch('setToken',token)
+          // 同步用commit，异步用dispatch
+          this.$store.commit('storeLoginUser', user);
+          // console.log(this.$store.dispatch('storeLoginUser', user));
+          this.$store.dispatch('setToken',token);
           this.$router.push('/')
         }else{
           alert('用户名或密码不正确')

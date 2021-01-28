@@ -20,11 +20,12 @@ module.exports = {
         ctx.body = {
           state: "success",
           token,
-          results
+          results,
+          user:results[0]
         }
       } else {
         ctx.body = {
-          status: 'fail'
+          state: 'fail'
         }
       }
     }

@@ -13,7 +13,8 @@
       </div>
     </div>
     <div class="send-blog">
-      <p><a href="/sendBlog">发表文章</a></p>
+      <!-- <p><a href="/blog/send">发表文章</a></p> -->
+      <button @click="send">发表文章</button>
     </div>
   </div>
 </template>
@@ -39,6 +40,9 @@ export default {
         }
       })
     },
+    send(){
+      this.$router.push('/blog/send')
+    }
   },
 };
 </script>
@@ -66,13 +70,11 @@ export default {
   top: 60px;
   right:20px;
 }
-.send-blog p{
+.send-blog button{
   background-color: blueviolet;
-  border-radius: 10px;
-}
-.send-blog a{
-  text-decoration: none;
+  border-radius: 5px;
   color: #ffffff;
 }
+
 
 </style>

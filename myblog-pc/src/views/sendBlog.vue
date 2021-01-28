@@ -4,7 +4,7 @@
       <h2>发表文章</h2>
       <div class="sendBlog-title">
         <span>标题：</span>
-        <input type="text" v-model="title"/>
+        <input type="text" v-model="title" />
       </div>
 
       <div class="sendBlog-content">
@@ -16,34 +16,46 @@
   </div>
 </template>
 <script>
+
 export default {
   data() {
     return {
-      title:'',
-      content:'',
-    }
+      title: "",
+      content: "",
+    };
   },
+  
   methods: {
     sendBlog() {
-      console.log('haha');
-      this.$http
-        .post("/blog/send", {
-          title: this.title,
-          content: this.content,
-          headers: {
-          Authorization: localStorage.getItem("mytoken"),
-        },
-        })
-        .then((res) => {
-          console.log(res);
-          this.$router.push("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // loginUser为空
+      let loginUser = this.$store.state.loginUser;
+      console.log(loginUser);
+      if (loginUser) {
+        this.$http
+          .post("/blog/send", {
+            title: this.title,
+            content: this.content,
+            userId: loginUser.user_id,
+            headers: {
+              Authorization: localStorage.getItem("mytoken"),
+            },
+          })
+          .then((res) => {
+            console.log(res);
+           let { state } = res.data;
+            if (state == "success") {
+              this.$router.push("/");
+            } else {
+              alert("发表文章失败!");
+            }
+          })
+      } else {
+        alert("还没有登录呢");
+        this.$router.push("/login");
+      }
     },
   },
-}
+};
 </script>
 <style scoped>
 .sendBlog {
@@ -51,10 +63,9 @@ export default {
   margin: 50px auto;
   border: 1px solid #cccccc;
 }
-.sendBlog div{
+.sendBlog div {
   text-align: left;
   margin-left: 20px;
-
 }
 .sendBlog-content {
   margin: 20px 0;
@@ -65,7 +76,7 @@ textarea {
   height: 100%;
   vertical-align: top;
 }
-.send{
- margin: 10px;
+.send {
+  margin: 10px;
 }
 </style>

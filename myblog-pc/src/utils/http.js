@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '../store';
+import app from '../main'
 const instance = axios.create({
   baseURL: 'http://localhost:3000',
   timeout: 60000,
@@ -27,7 +28,8 @@ instance.interceptors.response.use(function (response) {
   if (status == 401) {
     // location.href-"/login"
     store.dispatch('logout');
-    location.href = "/login";
+    // location.href = "/login"; 会导致页面刷新
+    app.$router.push("/login")
   }
   return Promise.reject(error);
 });

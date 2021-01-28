@@ -45,15 +45,20 @@ module.exports = {
     
   },
   async sendBlog(ctx){
-    let { title, content } = ctx.request.body;
+    let { title, content,userId } = ctx.request.body;
     if (title.trim().length == 0 || content.trim().length == 0) {
       ctx.body = '标题或内容不能为空!'
     } else {
-      let results = await blogModel.saveBlog({ title, content });
-      if (results.insertId) {
-        ctx.body = '发表成功'
+      let results = await blogModel.saveBlog(title, content, userId);
+      console.log(results);
+      if (results.insertId>0) {
+        ctx.body = {
+          state: "success",
+        };
       } else {
-        ctx.body = '发表失败!'
+        ctx.body = {
+          state: "fail",
+        };
 
       }
     }

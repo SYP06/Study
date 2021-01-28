@@ -2,7 +2,7 @@ const db = require("./db");
 
 module.exports = {
     getBlogs(){
-        return db.query(`SELECT * FROM t_blog`);
+        return db.query(`SELECT * FROM t_blog order by post_time desc`);
     },
     getBlogById(blogId){
         return db.query(`
@@ -12,7 +12,7 @@ module.exports = {
         LEFT JOIN t_user usr ON comm.user_id=usr.user_id
         WHERE blog.blog_id=?`, [blogId]);
     },
-    saveBlog(blog){
-        return db.query("insert into t_blog set ?", blog);
+    saveBlog( title, content, userId){
+        return db.query("insert into t_blog set ?", { title, content, user_id:userId});
     }
 };
