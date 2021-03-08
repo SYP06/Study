@@ -7,12 +7,12 @@ export default new Vuex.Store({
   state: {
     // token:localStorage.getItem('token')
     token:"",
-    loginUser:""
+    loginUser:"",
   },
   mutations: {
     storeLoginUser(state,user){
        state.loginUser = user
-    },
+    }
   },
   actions: {
     setToken:(state,token)=>{

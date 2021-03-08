@@ -7,14 +7,14 @@
 </head>
 <body>
     <script>
-        // function fn1(){
-        //     //获取传递的所有的实参
-        //     console.log(arguments);
-        //     console.log(arguments.length);
-        //     console.log(arguments.callee);
+        function fn1(){
+            //获取传递的所有的实参
+            console.log(arguments);
+            console.log(arguments.length);
+            console.log(arguments.callee);
 
-        // }
-        // fn1(1,2,3,4,5)
+        }
+        fn1(1,2,3,4,5)
 
         function fn2(x,y,...rest){
             console.log(x,y);//1,2

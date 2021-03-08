@@ -41,7 +41,7 @@ export default {
           // 存储token
           // 同步用commit，异步用dispatch
           this.$store.commit('storeLoginUser', user);
-          // console.log(this.$store.dispatch('storeLoginUser', user));
+          console.log(this.$store.dispatch('storeLoginUser', user));
           this.$store.dispatch('setToken',token);
           this.$router.push('/')
         }else{

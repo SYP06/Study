@@ -21,17 +21,17 @@
 
 
         //promise 用同步的形式处理异步问题
-        // let p1 = new Promise(function(resolve,reject){
-        //    setTimeout(()=>{
-        //        //两者选其一
-        //       resolve('success');
-        //       reject('fail');
-        //    },1000);
-        // }).then((res)=>{
-        //     console.log(res);
-        // }).catch((err)=>{
-        //     console.log(err);
-        // });
+        let p1 = new Promise(function(resolve,reject){
+           setTimeout(()=>{
+               //两者选其一
+              resolve('success');
+              reject('fail');
+           },1000);
+        }).then((res)=>{
+            console.log(res);
+        }).catch((err)=>{
+            console.log(err);
+        });
 
 
 

@@ -18,7 +18,7 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   });
 
-// 相应拦截器
+// 响应拦截器
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
   return response;
